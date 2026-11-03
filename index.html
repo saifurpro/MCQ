@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MCQ প্রস্তুতি</title>
+<meta name="theme-color" content="#2f5bea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MCQ প্রস্তুতি">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);--bg:#f3f5fa;--sf:#fff;--tx:#1b1f2a;--mu:#667085;--bd:#e3e6ee;--pr:#2f5bea;--pr2:#5b3fe0;--prt2:#fff;--prt:#fff;--ok:#12805c;--okb:#e4f6ee;--no:#c2331f;--nob:#fdeae7;--wr:#8a5a00;--wrb:#fff4d6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12141a;--sf:#1c1f28;--tx:#eceef4;--mu:#9aa1b2;--bd:#2d3140;--pr:#6c8cff;--pr2:#4b5fd0;--prt2:#fff;--prt:#0d1020;--ok:#5fd3a6;--okb:#12332a;--no:#ff8b7a;--nob:#3a1b17;--wr:#f2c15c;--wrb:#33280e}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12141a;--sf:#1c1f28;--tx:#eceef4;--mu:#9aa1b2;--bd:#2d3140;--pr:#6c8cff;--pr2:#4b5fd0;--prt2:#fff;--prt:#0d1020;--ok:#5fd3a6;--okb:#12332a;--no:#ff8b7a;--nob:#3a1b17;--wr:#f2c15c;--wrb:#33280e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.6}
+.w{max-width:640px;margin:0 auto;padding:14px 14px 96px}
+h1{font-size:22px;margin:4px 0 12px}h2{font-size:20px;margin:4px 0 10px}h3{font-size:16px;margin:18px 0 8px}
+input,select,textarea,button{font:inherit;color:inherit}
+.v{display:none}.v.on{display:block}
+.s,.f input,.f select,.f textarea,.set select{width:100%;padding:10px 13px;border:1px solid var(--bd);border-radius:12px;background:var(--sf)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 0 4px;scrollbar-width:none}
+.tab{white-space:nowrap;padding:6px 14px;border:1px solid var(--bd);border-radius:99px;background:var(--sf);cursor:pointer}
+.tab.on{background:var(--pr);color:var(--prt);border-color:var(--pr)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.btn{padding:9px 14px;border:1px solid var(--bd);border-radius:12px;background:var(--sf);cursor:pointer}
+.btn.p{background:var(--pr);color:var(--prt);border-color:var(--pr)}
+.mu{color:var(--mu);font-size:14px}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:12px 0}
+.cat{display:inline-block;font-size:12px;padding:1px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--bd);color:var(--mu)}
+.q{font-weight:600;margin:6px 0 10px}
+.o{display:block;width:100%;text-align:left;padding:10px 12px;margin:6px 0;border:1px solid var(--bd);border-radius:12px;background:var(--bg);cursor:pointer}
+.o.ok{background:var(--okb);border-color:var(--ok);color:var(--ok)}
+.o.no{background:var(--nob);border-color:var(--no);color:var(--no)}
+.o.on{border-color:var(--pr);box-shadow:0 0 0 2px color-mix(in srgb,var(--pr) 25%,transparent)}
+.ex{margin-top:8px;font-size:14px;color:var(--mu)}
+.pb{height:8px;background:var(--bg);border:1px solid var(--bd);border-radius:99px;overflow:hidden;margin:8px 0}.pb i{display:block;height:100%;background:var(--pr)}
+.hero{background:var(--pr);color:var(--prt);border-radius:20px;padding:18px}
+.hero .big{font-size:38px;font-weight:600;line-height:1.2}.hero small{font-size:16px;font-weight:400}
+.hero .pb{background:rgba(255,255,255,.25);border:0}.hero .pb i{background:var(--prt)}
+.hero .go{margin-top:10px;width:100%;background:var(--prt);color:var(--pr);border:0;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cc{text-align:left;background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:12px;cursor:pointer;display:block}
+.cc .ic{font-size:24px;display:block}
+.cc:last-child:nth-child(odd){grid-column:span 2}
+.wbtn{width:100%;text-align:left;cursor:pointer;display:flex;justify-content:space-between}
+.f label{display:block;font-size:14px;margin:10px 0 3px;color:var(--mu)}
+.wn{background:var(--wrb);color:var(--wr);padding:8px 12px;border-radius:10px;margin-top:8px;font-size:14px;display:none}
+.msg{font-size:14px;margin-top:8px}
+.set .item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--bd)}
+.set .item:last-child{border:0}.set select{width:auto}
+.badge{display:inline-block;font-size:12px;padding:1px 9px;border-radius:99px;background:var(--okb);color:var(--ok);margin-left:6px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--sf);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:9}
+nav button{flex:1;border:0;background:none;padding:8px 0 6px;cursor:pointer;color:var(--mu);font-size:12px;position:relative}
+nav button{min-width:0;font-size:11px}
+nav button span{display:block;font-size:22px;line-height:1.2}
+nav button.on{color:var(--pr);font-weight:600}
+nav i{position:absolute;top:4px;left:55%;background:var(--no);color:#fff;font-style:normal;font-size:11px;min-width:18px;border-radius:99px;padding:0 4px}
+.install-pop{position:fixed;left:12px;right:12px;bottom:calc(68px + env(safe-area-inset-bottom,0px));z-index:30;max-width:616px;margin:0 auto;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:18px;padding:14px;box-shadow:0 10px 38px rgba(20,30,80,.28);display:none}
+.install-pop.on{display:block;animation:install-in .24s ease-out}
+.install-pop .install-title{font-size:17px;font-weight:600}
+.install-pop .install-copy{font-size:14px;color:var(--mu);margin:3px 28px 8px 0}
+.install-pop .install-close{position:absolute;right:10px;top:8px;border:0;background:transparent;font-size:22px;color:var(--mu);cursor:pointer}
+.install-pop .row{margin-bottom:0}
+@keyframes install-in{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.app-dialog{position:fixed;inset:0;z-index:40;display:none;place-items:center;padding:20px;background:rgba(10,14,30,.48)}
+.app-dialog.on{display:grid}
+.app-dialog-box{width:min(100%,420px);background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:0 18px 54px rgba(0,0,0,.28)}
+.app-dialog-box h2{margin:0 32px 8px 0}
+.app-dialog-box p{margin:0 0 12px;white-space:pre-line}
+.app-dialog-box input{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);margin-bottom:8px}
+.app-dialog-box .row{justify-content:flex-end}
+
+#hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:linear-gradient(135deg,var(--pr),var(--pr2));color:var(--prt2);box-shadow:0 2px 14px rgba(20,30,80,.22)}
+#hd .in{max-width:640px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+#hd .brand{display:flex;align-items:center;gap:10px;min-width:0}
+#hd .logo{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:21px;flex:none}
+#hd .app{font-size:19px;font-weight:600;line-height:1.2;white-space:nowrap}
+#hd .me{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:4px 14px 4px 4px;min-width:0}
+#hd .me img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.85);flex:none;display:block}
+#hd .me span{font-size:14.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:380px){#hd .logo{display:none}#hd .app{font-size:17px}#hd .me span{font-size:13px}}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--pr);z-index:19}
+</style>
+</head>
+<body>
+<header id="hd"><div class="in">
+  <div class="brand"><div class="logo">📚</div><div class="app">MCQ প্রস্তুতি</div></div>
+  <div class="me"><img alt="সাইফুর রহমান" src="data:image/jpeg;base64,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"><span>সাইফুর রহমান</span></div>
+</div></header>
+<main class="w">
+<section class="v" id="v-home"></section>
+
+<section class="v" id="v-study">
+  <div class="row" style="justify-content:space-between;margin-top:0"><h2 style="margin:4px 0">📖 পড়া</h2><button class="btn" id="wrongShortcut">❌ ভুল প্রশ্ন</button></div>
+  <input class="s" id="ss" type="search" placeholder="প্রশ্ন, অপশন বা ব্যাখ্যা দিয়ে খুঁজুন…">
+  <div class="tabs" id="sc"></div>
+  <div class="row"><span class="mu" id="scn"></span><span style="flex:1"></span><button class="btn p" id="sres">▶ চালিয়ে যান</button></div>
+  <div id="sl"></div>
+  <button class="btn" id="more" style="width:100%;display:none;margin:8px 0 16px">আরও ২৫টি দেখুন</button>
+</section>
+
+<section class="v" id="v-wrong">
+  <div class="row" style="justify-content:space-between;margin-top:0"><h2 style="margin:4px 0">❌ ভুল করা প্রশ্ন</h2><button class="btn" id="wrongBack">← পড়ায় ফিরুন</button></div>
+  <input class="s" id="ws" type="search" placeholder="ভুল প্রশ্নের মধ্যে খুঁজুন…">
+  <div class="tabs" id="wc"></div>
+  <div class="mu" id="wcn"></div>
+  <div id="wl"></div>
+  <button class="btn" id="wmore" style="width:100%;display:none;margin:8px 0 16px">আরও ভুল প্রশ্ন</button>
+</section>
+
+<section class="v" id="v-exam">
+  <h2>📝 পরীক্ষা</h2>
+  <p class="mu">নির্বাচিত ক্যাটাগরি থেকে এলোমেলো প্রশ্ন। প্রতি প্রশ্নে ১ মিনিট সময়।</p>
+  <div class="card" id="examsetup">
+    <label class="mu" for="exam-cat">ক্যাটাগরি</label><select class="s" id="exam-cat"></select>
+    <label class="mu" for="exam-size" style="display:block;margin-top:10px">প্রশ্নের সংখ্যা</label>
+    <select class="s" id="exam-size"><option value="20">২০টি প্রশ্ন · ২০ মিনিট</option><option value="50">৫০টি প্রশ্ন · ৫০ মিনিট</option></select>
+    <button class="btn p" id="examStart" style="width:100%;margin-top:12px">পরীক্ষা শুরু করুন</button>
+  </div>
+  <div id="examrun" style="display:none"><div class="card" id="examTimer" aria-live="polite"></div><div id="exam-list"></div><button class="btn p" id="examSubmit" style="width:100%">পরীক্ষা শেষ করুন</button></div>
+  <div id="examresult" style="display:none"></div>
+</section>
+
+<section class="v" id="v-add">
+  <h2>➕ প্রশ্ন যোগ <span class="badge">অ্যাডমিন</span></h2>
+  <div class="card f">
+    <b>একটি প্রশ্ন</b>
+    <label>ক্যাটাগরি</label><select id="fc"></select>
+    <label>প্রশ্ন</label><textarea id="fq" rows="2"></textarea>
+    <div class="wn" id="dup"></div>
+    <label>অপশন ক</label><input id="o0"><label>অপশন খ</label><input id="o1">
+    <label>অপশন গ</label><input id="o2"><label>অপশন ঘ</label><input id="o3">
+    <label>সঠিক উত্তর</label>
+    <select id="fa"><option value="0">ক</option><option value="1">খ</option><option value="2">গ</option><option value="3">ঘ</option></select>
+    <label>ব্যাখ্যা (ঐচ্ছিক)</label><input id="fe">
+    <div class="row"><button class="btn p" id="save">সেভ করুন</button></div>
+    <div class="msg" id="m1"></div>
+    <div class="msg" id="gst1"></div>
+  </div>
+  <div class="card f">
+    <b>একসাথে অনেক প্রশ্ন</b>
+    <p class="mu">প্রতি লাইনে একটি:<br>প্রশ্ন | ক | খ | গ | ঘ | সঠিক নম্বর (১-৪) | ব্যাখ্যা (ঐচ্ছিক)</p>
+    <label>ক্যাটাগরি</label><select id="bc"></select>
+    <textarea id="bt" rows="6" style="margin-top:8px"></textarea>
+    <div class="row"><button class="btn p" id="bsave">যোগ করুন</button></div>
+    <div class="msg" id="m2"></div>
+    <div class="msg" id="gst2"></div>
+  </div>
+</section>
+
+<section class="v" id="v-set">
+  <h2>⚙️ সেটিংস</h2>
+  <div class="card set">
+    <div class="item"><span>থিম</span><select id="th"><option value="auto">অটো</option><option value="light">লাইট</option><option value="dark">ডার্ক</option></select></div>
+    <div class="item"><span>দৈনিক পড়ার লক্ষ্য</span><span style="display:flex;gap:6px;align-items:center"><input id="goalInput" type="number" min="1" max="500" style="width:82px;padding:7px;border:1px solid var(--bd);border-radius:10px;background:var(--sf)"><button class="btn" id="goalSave">সেভ</button></span></div>
+    <div class="item"><span>পড়ার ট্র্যাক রিসেট</span><button class="btn" id="rr">রিসেট</button></div>
+  </div>
+
+  <div class="card f" id="pin-card">
+    <b>🔐 সেটিংসের পিন পরিবর্তন</b>
+    <p class="mu">নতুন পিন ৪–১২ সংখ্যার হতে পারে। এটি শুধু এই ব্রাউজারে সেভ থাকবে।</p>
+    <label for="pinCurrent">বর্তমান পিন</label><input id="pinCurrent" type="password" inputmode="numeric" autocomplete="current-password">
+    <label for="pinNew">নতুন পিন</label><input id="pinNew" type="password" inputmode="numeric" autocomplete="new-password">
+    <label for="pinConfirm">নতুন পিন আবার লিখুন</label><input id="pinConfirm" type="password" inputmode="numeric" autocomplete="new-password">
+    <div class="row"><button class="btn p" id="pinSave">পিন পরিবর্তন করুন</button></div>
+    <div class="msg" id="pinMsg" aria-live="polite"></div>
+  </div>
+
+  <div class="card set" id="tk-card" style="display:none">
+    <div style="font-weight:600;margin-bottom:6px">🔑 GitHub টোকেন (API Key)</div>
+    <div class="mu" style="margin-bottom:8px">এখানে টোকেন বসিয়ে সেভ করুন। এটা শুধু এই ব্রাউজারে থাকবে, HTML ফাইলে লেখা হবে না। অবস্থা: <b id="tkst"></b></div>
+    <input id="gt" type="password" autocomplete="off" placeholder="github_pat_… পেস্ট করুন" style="width:100%;padding:10px 13px;border:1px solid var(--bd);border-radius:12px;background:var(--sf)">
+    <p class="mu" style="margin:6px 0 0">টোকেন তৈরি করতে আপনার GitHub অ্যাকাউন্টের <b>Settings → Developer settings → Fine-grained tokens</b> এ যান। নতুন টোকেন তৈরি করে এই রেপোজিটরির জন্য <b>Contents: Read and write</b> অনুমতি দিন, তারপর টোকেনটি এখানে পেস্ট করুন। <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Fine-grained token তৈরি করুন</a></p>
+    <div class="row"><button class="btn p" id="gtsave">টোকেন সেভ করুন</button><button class="btn" id="gtshow">দেখান/লুকান</button><button class="btn" id="gtdel">টোকেন মুছুন</button></div>
+    <div class="msg" id="gst0"></div>
+  </div>
+
+  <div class="card set" id="adm-on">
+    <div class="item"><span><b>অ্যাডমিন হিসেবে লগইন আছেন</b></span><button class="btn" id="glogout">লগআউট</button></div>
+    <div class="item"><span>এখনই GitHub-এ ব্যাকআপ</span><button class="btn" id="gnow">ব্যাকআপ</button></div>
+    <div class="item"><span>GitHub থেকে লোড</span><button class="btn" id="gpull">লোড</button></div>
+    <div class="item"><span>ব্যাকআপ ডাউনলোড</span><button class="btn" id="exp">ডাউনলোড</button></div>
+    <div class="item"><span>ফাইল থেকে প্রশ্ন আনুন</span><button class="btn" id="impb">ফাইল বাছুন</button><input type="file" id="impf" accept=".json" hidden></div>
+    <div class="msg" id="gst"></div>
+  </div>
+  <div class="mu" id="info"></div>
+  <div class="mu msg" id="m3"></div>
+</section>
+</main>
+<aside id="installPop" class="install-pop" role="dialog" aria-labelledby="installTitle" aria-describedby="installCopy">
+  <button class="install-close" id="installClose" type="button" aria-label="পরে মনে করিয়ে দিন">×</button>
+  <div class="install-title" id="installTitle">📲 MCQ প্রস্তুতি অ্যাপ ইনস্টল করুন</div>
+  <div class="install-copy" id="installCopy">দ্রুত খুলুন, হোম স্ক্রিন থেকে পড়ুন এবং অ্যাপের মতো ব্যবহার করুন।</div>
+  <div class="row"><button class="btn p" id="installAction" type="button">এখনই ইনস্টল</button><button class="btn" id="installLater" type="button">পরে</button></div>
+</aside>
+<div id="appDialog" class="app-dialog" role="presentation">
+  <section class="app-dialog-box" role="dialog" aria-modal="true" aria-labelledby="appDialogTitle" aria-describedby="appDialogMessage">
+    <h2 id="appDialogTitle">MCQ প্রস্তুতি</h2>
+    <p id="appDialogMessage" class="mu"></p>
+    <input id="appDialogInput" type="password" autocomplete="off" style="display:none">
+    <div class="row"><button class="btn" id="appDialogCancel" type="button">বাতিল</button><button class="btn p" id="appDialogOk" type="button">ঠিক আছে</button></div>
+  </section>
+</div>
+<nav id="nav"></nav>
+
+<script type="text/plain">
+const REPO="saifurpro/MCQ",BR="master",FP="mcq-data.json";
+const CATS=["বিসিএস","প্রাইমারি","নিবন্ধন","পিএসসি","১৩-২০ গ্রেড"];
+const IC={"বিসিএস":"🏛️","প্রাইমারি":"🏫","নিবন্ধন":"📝","পিএসসি":"📋","১৩-২০ গ্রেড":"🎓"};
+const KEY="mcq_questions_v1",PK="mcq_progress_v1",TK="mcq_theme",AK="mcq_admin",DK="mcq_dirty";
+const L=["ক","খ","গ","ঘ"],BN="০১২৩৪৫৬৭৮৯";
+const $=id=>document.getElementById(id);
+const d2e=s=>String(s).replace(/[০-৯]/g,c=>BN.indexOf(c));
+const bn=n=>String(n).replace(/\d/g,c=>BN[c]);
+const norm=s=>d2e(s).toLowerCase().replace(/[\s\u200c\u200d।?,.!:;'"’“”‘()\[\]\-–—_]/g,"");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const td=()=>new Date().toLocaleDateString("en-CA");
+function lg(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+function sv(k,v){try{localStorage.setItem(k,typeof v==="string"?v:JSON.stringify(v))}catch(e){}}
+function rm(k){try{localStorage.removeItem(k)}catch(e){}}
+const isDummy=x=>x&&/^s[0-4]$/.test(x.id);
+let Q=(lg(KEY)||[]).filter(x=>!isDummy(x));
+let P=lg(PK);if(!P||!P.a)P={a:{},d:{},last:null};
+let view="home",cat="সব",term="",wcat="সব",wterm="";
+const PIN="2026",UK="mcq_unlock";
+const tok=()=>{const a=lg(AK);return (a&&a.t)||""};
+let admin=false;try{admin=localStorage.getItem(UK)==="1"}catch(e){}
+const setSt=t=>{["gst","gst0","gst1","gst2"].forEach(i=>{const e=$(i);if(e)e.textContent=t})};
+const api=()=>`https://api.github.com/repos/${REPO}/contents/${FP}`;
+const hd=raw=>({Authorization:"Bearer "+tok(),Accept:raw?"application/vnd.github.raw+json":"application/vnd.github+json"});
+const hasTok=()=>!!tok();
+let st=null;
+function markDirty(){if(!admin)return;sv(DK,"1");clearTimeout(st);if(!hasTok()){setSt("⚠ GitHub-এ সেভ হয়নি: আগে সেটিংসে টোকেন সেভ করুন। প্রশ্ন শুধু এই ডিভাইসে আছে।");return}setSt("⏳ কিছুক্ষণ পরে GitHub-এ সেভ হবে…");st=setTimeout(push,2500)}
+const persist=()=>{sv(KEY,Q);markDirty()}, saveP=()=>sv(PK,P);
+
+async function push(){
+  if(!admin){return}
+  if(!hasTok()){setSt("⚠ GitHub-এ সেভ করতে নিচে টোকেন দিন (এখন শুধু এই ডিভাইসে সেভ আছে)।");return}
+  setSt("⏳ GitHub-এ সেভ হচ্ছে…");
+  try{
+    let sha;const r=await fetch(api()+"?ref="+BR,{headers:hd(),cache:"no-store"});
+    if(r.ok)sha=(await r.json()).sha;else if(r.status!==404){let m="";try{m=(await r.json()).message}catch(_){}throw new Error(r.status+(m?" "+m:""))}
+    const body=JSON.stringify({v:2,questions:Q},null,1);
+    const w=await fetch(api(),{method:"PUT",headers:hd(),body:JSON.stringify({message:"MCQ update "+new Date().toISOString(),content:btoa(unescape(encodeURIComponent(body))),branch:BR,sha})});
+    if(!w.ok){let m="";try{m=(await w.json()).message}catch(_){}throw new Error(w.status+(m?" "+m:""))}
+    rm(DK);setSt("✔ GitHub-এ সেভ হয়েছে: "+new Date().toLocaleTimeString("bn-BD"));
+  }catch(e){setSt("✘ সেভ ব্যর্থ ("+e.message+")"+(/^401/.test(e.message)?": টোকেন অকার্যকর, নতুন টোকেন দিন":/^40[34]/.test(e.message)?": টোকেনে saifurpro/MCQ রেপোর Contents: Read and write অনুমতি নেই":": রেপো/ব্রাঞ্চ দেখুন"))}
+}
+// সবার জন্য: GitHub থেকে লোড। অ্যাডমিন হলে টোকেন দিয়ে (সর্বশেষ ডেটা)।
+async function load(manual){
+  try{
+    if(admin&&hasTok()&&lg(DK)&&!manual){await push();return}
+    let r=null;
+    if(admin&&hasTok()){
+      r=await fetch(api()+"?ref="+BR,{headers:hd(true),cache:"no-store"});
+      if(r.status===401)setSt("⚠ টোকেন কাজ করছে না, নতুন টোকেন দিন। পাবলিক ফাইল থেকে লোড হচ্ছে…");
+      if(!r.ok)r=null;
+    }
+    if(!r)r=await fetch(`https://raw.githubusercontent.com/${REPO}/${BR}/${FP}?t=${Date.now()}`,{cache:"no-store"});
+    if(r.status===404){Q=[];sv(KEY,Q);render();return}
+    if(!r.ok)throw new Error(r.status);
+    const d=await r.json(),arr=Array.isArray(d)?d:d.questions;
+    if(!Array.isArray(arr))throw new Error("ফরম্যাট");
+    Q=arr.filter(x=>!isDummy(x));sv(KEY,Q);render();
+    if(!/টোকেন/.test($("gst")?$("gst").textContent:""))setSt("✔ GitHub থেকে লোড হয়েছে।");
+  }catch(e){setSt("লোড করা যায়নি ("+e.message+"), সেভ করা ডেটা দেখানো হচ্ছে।")}
+}
+async function login(){
+  const t=$("gt").value.trim();if(!t){setSt("টোকেন দিন");return}
+  setSt("⏳ যাচাই হচ্ছে…");
+  try{
+    const r=await fetch("https://api.github.com/repos/"+REPO,{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"}});
+    if(!r.ok)throw new Error("টোকেন ভুল বা রেপোতে অনুমতি নেই ("+r.status+")");
+    const j=await r.json();
+    sv(AK,{t});admin=true;$("gt").value="";
+    setSt(j.permissions&&j.permissions.push===false?"⚠ টোকেন সেভ হয়েছে, কিন্তু লেখার অনুমতি নেই মনে হচ্ছে। Contents: Read and write দিন।":"✔ টোকেন সেভ হয়েছে।");render();if(lg(DK))await push();else await load(true);
+  }catch(e){setSt("✘ "+e.message)}
+}
+
+const wrongs=()=>Q.filter(x=>P.a[x.id]&&!P.a[x.id].ok);
+const findDup=q=>{const n=norm(q);return n?Q.find(x=>norm(x.q)===n):null};
+const fl=(arr,c,t)=>{const n=norm(t);return arr.filter(x=>(c==="সব"||x.c===c)&&(!n||norm([x.q,...x.o,x.e,x.c].join(" ")).includes(n)))};
+
+function applyTheme(t){const r=document.documentElement;if(t==="light"||t==="dark")r.setAttribute("data-theme",t);else r.removeAttribute("data-theme")}
+applyTheme(lg(TK)||"auto");
+
+function record(x,ok){P.a[x.id]={ok};P.last=x.id;const d=P.d[td()]=P.d[td()]||{};d[x.id]=ok;saveP();nav()}
+function card(x,i){
+  const s=P.a[x.id];
+  return `<div class="card" data-id="${x.id}"><span class="cat">${x.c}</span> <span class="mu">#${bn(i+1)}</span>${s?(s.ok?' <span style="color:var(--ok)">✔ পড়া</span>':' <span style="color:var(--no)">✘ আবার দেখুন</span>'):''}
+  <div class="q">${esc(x.q)}</div>${x.o.map((o,j)=>`<button class="o" data-j="${j}">${L[j]}. ${esc(o)}</button>`).join("")}
+  <div class="ex" style="display:none"></div>${admin?'<div class="row"><button class="btn del" style="font-size:13px">মুছুন</button></div>':''}</div>`;
+}
+function showList(el,arr,empty){
+  el.innerHTML=arr.length?arr.map(card).join(""):`<p class="mu">${empty}</p>`;
+  el.querySelectorAll(".card").forEach(c=>{
+    const x=Q.find(y=>y.id===c.dataset.id);
+    c.querySelectorAll(".o").forEach(b=>b.onclick=()=>{
+      const j=+b.dataset.j;record(x,j===x.a);
+      c.querySelectorAll(".o").forEach(e=>{e.disabled=true;if(+e.dataset.j===x.a)e.classList.add("ok")});
+      if(j!==x.a)b.classList.add("no");
+      const ex=c.querySelector(".ex");ex.style.display="block";
+      ex.textContent=(j===x.a?"✔ সঠিক। ":"✘ ভুল। সঠিক উত্তর: "+L[x.a]+". ")+(x.e||"");
+    });
+    const del=c.querySelector(".del");
+    if(del)del.onclick=()=>{if(admin&&confirm("প্রশ্নটি মুছবেন?")){Q=Q.filter(y=>y.id!==x.id);persist();render()}};
+  });
+}
+function chips(el,cur,fn){
+  const sc=el.scrollLeft;
+  el.innerHTML=["সব",...CATS].map(c=>`<button class="tab ${c===cur?"on":""}" data-c="${c}">${c}</button>`).join("");
+  el.querySelectorAll(".tab").forEach(b=>b.onclick=()=>fn(b.dataset.c));el.scrollLeft=sc;
+}
+function nav(){
+  const n=wrongs().length;
+  const items=[["home","🏠","হোম"],["study","📖","পড়া"],["wrong","❌","ভুল"]];
+  if(admin)items.push(["add","➕","যোগ"]);
+  items.push(["set","⚙️","সেটিংস"]);
+  $("nav").innerHTML=items.map(([v,i,t])=>`<button data-v="${v}" class="${v===view?"on":""}"><span>${i}</span>${t}${v==="wrong"&&n?`<i>${bn(n)}</i>`:""}</button>`).join("");
+  $("nav").querySelectorAll("button").forEach(b=>b.onclick=()=>go(b.dataset.v));
+}
+function go(v){
+  if(v==="set"&&!admin){
+    const p=prompt("সেটিংসে ঢুকতে পিন দিন");
+    if(p===null)return;
+    if(p.trim()!==PIN){alert("ভুল পিন");return}
+    admin=true;try{localStorage.setItem(UK,"1")}catch(e){}
+    load(false);
+  }
+  if(v==="add"&&!admin)v="home";view=v;render();window.scrollTo(0,0)
+}
+function render(){
+  if(view==="add"&&!admin)view="home";
+  document.querySelectorAll(".v").forEach(s=>s.classList.toggle("on",s.id==="v-"+view));
+  nav();
+  if(view==="home")home();if(view==="study")study();if(view==="wrong")wrong();if(view==="set")sets();
+}
+function home(){
+  const d=P.d[td()]||{},n=Object.keys(d).length,k=Object.values(d).filter(Boolean).length;
+  const done=Q.filter(x=>P.a[x.id]).length,pct=Q.length?Math.round(done/Q.length*100):0;
+  const last=Q.find(x=>x.id===P.last);
+  $("v-home").innerHTML=`<div class="hero"><div>আজকের পড়া</div><div class="big">${bn(n)}<small> টি প্রশ্ন</small></div>
+  <div>✔ সঠিক ${bn(k)} · ✘ ভুল ${bn(n-k)}</div><div class="pb"><i style="width:${pct}%"></i></div>
+  <div>মোট পড়া ${bn(done)}/${bn(Q.length)} (${bn(pct)}%)</div>
+  <button class="btn go" id="hres">▶ যেখানে ছিলেন সেখান থেকে চালিয়ে যান</button>
+  ${last?`<div style="font-size:13px;margin-top:8px;opacity:.9">সর্বশেষ: ${last.c} — ${esc(last.q.slice(0,36))}…</div>`:""}</div>
+  <h3>ক্যাটাগরি</h3><div class="grid">${CATS.map(c=>{const t=Q.filter(x=>x.c===c),r=t.filter(x=>P.a[x.id]).length;
+   return `<button class="cc" data-c="${c}"><span class="ic">${IC[c]}</span><b>${c}</b><div class="pb"><i style="width:${t.length?Math.round(r/t.length*100):0}%"></i></div><span class="mu">${bn(r)}/${bn(t.length)} পড়া</span></button>`}).join("")}</div>
+  <h3>রিভিশন</h3><button class="card wbtn" id="hw"><span>❌ ভুল করা প্রশ্ন আবার পড়ুন</span><b>${bn(wrongs().length)}</b></button>`;
+  $("hres").onclick=()=>resume(last?last.c:"সব");
+  $("v-home").querySelectorAll(".cc").forEach(b=>b.onclick=()=>{cat=b.dataset.c;term="";$("ss").value="";go("study")});
+  $("hw").onclick=()=>go("wrong");
+}
+function study(){
+  chips($("sc"),cat,c=>{cat=c;study()});
+  const a=fl(Q,cat,term);$("scn").textContent=`${bn(a.length)}টি প্রশ্ন`;
+  showList($("sl"),a,"কোনো প্রশ্ন পাওয়া যায়নি।");
+}
+function wrong(){
+  chips($("wc"),wcat,c=>{wcat=c;wrong()});
+  const a=fl(wrongs(),wcat,wterm);$("wcn").textContent=`${bn(a.length)}টি ভুল প্রশ্ন`;
+  showList($("wl"),a,"কোনো ভুল প্রশ্ন নেই 🎉");
+}
+function resume(c){
+  cat=c;const v=Q.filter(x=>cat==="সব"||x.c===cat);
+  if(!v.length){alert("কোনো প্রশ্ন নেই");return}
+  const s=v.findIndex(x=>x.id===P.last)+1;let t=null;
+  for(let i=0;i<v.length;i++){const x=v[(s+i)%v.length];if(!P.a[x.id]){t=x;break}}
+  if(!t){alert("এই ক্যাটাগরির সব প্রশ্ন পড়া শেষ 🎉");return}
+  term="";$("ss").value="";go("study");
+  const el=document.querySelector(`#sl [data-id="${t.id}"]`);
+  if(el){el.scrollIntoView({block:"center"});el.style.outline="2px solid var(--pr)"}
+}
+function sets(){
+  $("adm-on").style.display=admin?"block":"none";
+  $("tk-card").style.display=admin?"block":"none";
+  $("info").textContent=`মোট প্রশ্ন ${bn(Q.length)}টি · পড়া হয়েছে ${bn(Q.filter(x=>P.a[x.id]).length)}টি। প্রশ্ন GitHub থেকে আসে; পড়ার হিসাব শুধু এই ব্রাউজারে থাকে। (সংস্করণ ৩)`;
+  $("th").value=lg(TK)||"auto";
+  $("tkst").textContent=hasTok()?"(সেভ আছে)":"(নেই)";
+}
+
+$("ss").oninput=e=>{term=e.target.value;study()};
+$("ws").oninput=e=>{wterm=e.target.value;wrong()};
+$("sres").onclick=()=>resume(cat);
+[$("fc"),$("bc")].forEach(s=>s.innerHTML=CATS.map(c=>`<option>${c}</option>`).join(""));
+$("fq").oninput=()=>{const d=findDup($("fq").value),w=$("dup");w.style.display=d?"block":"none";if(d)w.textContent="⚠ এই প্রশ্ন আগেই আছে ("+d.c+")।"};
+$("save").onclick=()=>{
+  if(!admin)return;
+  const q=$("fq").value.trim(),o=[0,1,2,3].map(i=>$("o"+i).value.trim()),m=$("m1");
+  if(!q||o.some(v=>!v)){m.textContent="প্রশ্ন ও চারটি অপশনই দিন।";return}
+  if(new Set(o.map(norm)).size<4){m.textContent="অপশনগুলো আলাদা হতে হবে।";return}
+  if(findDup(q)){m.textContent="ডুপ্লিকেট প্রশ্ন, যোগ করা হয়নি।";return}
+  Q.unshift({id:"u"+Date.now(),c:$("fc").value,q,o,a:+$("fa").value,e:$("fe").value.trim()});persist();
+  ["fq","o0","o1","o2","o3","fe"].forEach(i=>$(i).value="");$("dup").style.display="none";m.textContent="✔ প্রশ্ন যোগ হয়েছে। GitHub-এ সেভের অবস্থা নিচে দেখুন।";
+};
+$("bsave").onclick=()=>{
+  if(!admin)return;
+  let ok=0,dup=0,bad=0;
+  $("bt").value.split("\n").map(s=>s.trim()).filter(Boolean).forEach(line=>{
+    const p=line.split("|").map(s=>s.trim()),a=parseInt(d2e(p[5]),10)-1;
+    if(p.length<6||p.slice(0,5).some(v=>!v)||!(a>=0&&a<4)){bad++;return}
+    if(findDup(p[0])){dup++;return}
+    Q.unshift({id:"b"+Date.now()+Math.random().toString(36).slice(2,6),c:$("bc").value,q:p[0],o:p.slice(1,5),a,e:p[6]||""});ok++;
+  });
+  persist();$("m2").textContent=`✔ ${bn(ok)}টি যোগ হয়েছে, ${bn(dup)}টি ডুপ্লিকেট বাদ, ${bn(bad)}টি ফরম্যাট ভুল।`;if(ok)$("bt").value="";
+};
+$("th").onchange=e=>{sv(TK,e.target.value);applyTheme(e.target.value)};
+$("glogout").onclick=()=>{if(confirm("অ্যাডমিন মোড বন্ধ করবেন?")){try{localStorage.removeItem(UK)}catch(e){}admin=false;view="home";render()}};
+$("gnow").onclick=push;
+$("gtsave").onclick=login;
+$("gtshow").onclick=()=>{const i=$("gt");i.type=i.type==="password"?"text":"password"};
+$("gtdel").onclick=()=>{rm(AK);setSt("টোকেন মুছে ফেলা হয়েছে।");sets()};
+$("gpull").onclick=()=>{if(confirm("GitHub-এর ডেটা দিয়ে এই ডিভাইসের ডেটা বদলে যাবে। চালিয়ে যাবেন?")){rm(DK);load(true)}};
+$("exp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({v:2,questions:Q},null,1)],{type:"application/json"}));a.download="mcq-backup.json";a.click()};
+$("impb").onclick=()=>$("impf").click();
+$("impf").onchange=e=>{
+  const f=e.target.files[0];if(!f||!admin)return;const r=new FileReader();
+  r.onload=()=>{try{
+    let ok=0,dup=0;(j=>Array.isArray(j)?j:(j.questions||[]))(JSON.parse(r.result)).forEach(x=>{
+      if(!x||!x.q||!Array.isArray(x.o)||x.o.length!==4||!(x.a>=0&&x.a<4)||!CATS.includes(x.c))return;
+      if(findDup(x.q)){dup++;return}Q.push({id:"i"+Date.now()+Math.random().toString(36).slice(2,6),c:x.c,q:x.q,o:x.o,a:x.a,e:x.e||""});ok++;
+    });persist();$("m3").textContent=`✔ ${bn(ok)}টি যোগ হয়েছে, ${bn(dup)}টি ডুপ্লিকেট বাদ।`;sets();nav();
+  }catch(err){$("m3").textContent="ফাইলটি পড়া যায়নি।"}};
+  r.readAsText(f);e.target.value="";
+};
+$("rr").onclick=()=>{if(confirm("পড়ার ট্র্যাক রিসেট করবেন? প্রশ্ন মুছবে না।")){P={a:{},d:{},last:null};saveP();render()}};
+render();
+load(false);
+</script>
+<script src="app.js"></script>
+</body>
+</html>
