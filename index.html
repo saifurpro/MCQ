@@ -155,13 +155,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="v" id="v-set">
   <h2>⚙️ সেটিংস</h2>
-  <div class="card set">
-    <div class="item"><span>থিম</span><select id="th"><option value="auto">অটো</option><option value="light">লাইট</option><option value="dark">ডার্ক</option></select></div>
-    <div class="item"><span>দৈনিক পড়ার লক্ষ্য</span><span style="display:flex;gap:6px;align-items:center"><input id="goalInput" type="number" min="1" max="500" style="width:82px;padding:7px;border:1px solid var(--bd);border-radius:10px;background:var(--sf)"><button class="btn" id="goalSave">সেভ</button></span></div>
-    <div class="item"><span>পড়ার ট্র্যাক রিসেট</span><button class="btn" id="rr">রিসেট</button></div>
-  </div>
-
-  <div class="card f" id="pin-card">
+  <div class="card f" id="pin-card" style="border-color:var(--pr);border-width:2px">
     <b>🔐 সেটিংসের পিন পরিবর্তন</b>
     <p class="mu">নতুন পিন ৪–১২ সংখ্যার হতে পারে। এটি শুধু এই ব্রাউজারে সেভ থাকবে।</p>
     <label for="pinCurrent">বর্তমান পিন</label><input id="pinCurrent" type="password" inputmode="numeric" autocomplete="current-password">
@@ -169,6 +163,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <label for="pinConfirm">নতুন পিন আবার লিখুন</label><input id="pinConfirm" type="password" inputmode="numeric" autocomplete="new-password">
     <div class="row"><button class="btn p" id="pinSave">পিন পরিবর্তন করুন</button></div>
     <div class="msg" id="pinMsg" aria-live="polite"></div>
+  </div>
+
+  <div class="card set">
+    <div class="item"><span>থিম</span><select id="th"><option value="auto">অটো</option><option value="light">লাইট</option><option value="dark">ডার্ক</option></select></div>
+    <div class="item"><span>দৈনিক পড়ার লক্ষ্য</span><span style="display:flex;gap:6px;align-items:center"><input id="goalInput" type="number" min="1" max="500" style="width:82px;padding:7px;border:1px solid var(--bd);border-radius:10px;background:var(--sf)"><button class="btn" id="goalSave">সেভ</button></span></div>
+    <div class="item"><span>পড়ার ট্র্যাক রিসেট</span><button class="btn" id="rr">রিসেট</button></div>
   </div>
 
   <div class="card set" id="tk-card" style="display:none">

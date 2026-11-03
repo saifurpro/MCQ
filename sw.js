@@ -1,4 +1,4 @@
-const CACHE = "mcq-shell-v2";
+const CACHE = "mcq-shell-v3";
 const SHELL = ["./", "./index.html", "./app.js", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", event => {
