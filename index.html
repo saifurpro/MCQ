@@ -88,6 +88,7 @@ nav i{position:absolute;top:4px;left:55%;background:var(--no);color:#fff;font-st
     <label>ব্যাখ্যা (ঐচ্ছিক)</label><input id="fe">
     <div class="row"><button class="btn p" id="save">সেভ করুন</button></div>
     <div class="msg" id="m1"></div>
+    <div class="msg" id="gst1"></div>
   </div>
   <div class="card f">
     <b>একসাথে অনেক প্রশ্ন</b>
@@ -96,6 +97,7 @@ nav i{position:absolute;top:4px;left:55%;background:var(--no);color:#fff;font-st
     <textarea id="bt" rows="6" style="margin-top:8px"></textarea>
     <div class="row"><button class="btn p" id="bsave">যোগ করুন</button></div>
     <div class="msg" id="m2"></div>
+    <div class="msg" id="gst2"></div>
   </div>
 </section>
 
@@ -150,12 +152,12 @@ let view="home",cat="সব",term="",wcat="সব",wterm="";
 const PIN="2026",UK="mcq_unlock";
 const tok=()=>{const a=lg(AK);return (a&&a.t)||""};
 let admin=false;try{admin=localStorage.getItem(UK)==="1"}catch(e){}
-const setSt=t=>{["gst","gst0"].forEach(i=>{const e=$(i);if(e)e.textContent=t})};
+const setSt=t=>{["gst","gst0","gst1","gst2"].forEach(i=>{const e=$(i);if(e)e.textContent=t})};
 const api=()=>`https://api.github.com/repos/${REPO}/contents/${FP}`;
 const hd=raw=>({Authorization:"Bearer "+tok(),Accept:raw?"application/vnd.github.raw+json":"application/vnd.github+json"});
 const hasTok=()=>!!tok();
 let st=null;
-function markDirty(){if(!admin)return;sv(DK,"1");clearTimeout(st);setSt("⏳ কিছুক্ষণ পরে GitHub-এ সেভ হবে…");st=setTimeout(push,2500)}
+function markDirty(){if(!admin)return;sv(DK,"1");clearTimeout(st);if(!hasTok()){setSt("⚠ GitHub-এ সেভ হয়নি: আগে সেটিংসে টোকেন সেভ করুন। প্রশ্ন শুধু এই ডিভাইসে আছে।");return}setSt("⏳ কিছুক্ষণ পরে GitHub-এ সেভ হবে…");st=setTimeout(push,2500)}
 const persist=()=>{sv(KEY,Q);markDirty()}, saveP=()=>sv(PK,P);
 
 async function push(){
@@ -164,12 +166,12 @@ async function push(){
   setSt("⏳ GitHub-এ সেভ হচ্ছে…");
   try{
     let sha;const r=await fetch(api()+"?ref="+BR,{headers:hd(),cache:"no-store"});
-    if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error(r.status);
+    if(r.ok)sha=(await r.json()).sha;else if(r.status!==404){let m="";try{m=(await r.json()).message}catch(_){}throw new Error(r.status+(m?" "+m:""))}
     const body=JSON.stringify({v:2,questions:Q},null,1);
     const w=await fetch(api(),{method:"PUT",headers:hd(),body:JSON.stringify({message:"MCQ update "+new Date().toISOString(),content:btoa(unescape(encodeURIComponent(body))),branch:BR,sha})});
-    if(!w.ok)throw new Error(w.status);
+    if(!w.ok){let m="";try{m=(await w.json()).message}catch(_){}throw new Error(w.status+(m?" "+m:""))}
     rm(DK);setSt("✔ GitHub-এ সেভ হয়েছে: "+new Date().toLocaleTimeString("bn-BD"));
-  }catch(e){setSt("✘ সেভ ব্যর্থ ("+e.message+")"+(String(e.message)==="401"?": টোকেন অকার্যকর, নতুন টোকেন দিন":": টোকেনের অনুমতি/ব্রাঞ্চ দেখুন"))}
+  }catch(e){setSt("✘ সেভ ব্যর্থ ("+e.message+")"+(/^401/.test(e.message)?": টোকেন অকার্যকর, নতুন টোকেন দিন":/^40[34]/.test(e.message)?": টোকেনে saifurpro/MCQ রেপোর Contents: Read and write অনুমতি নেই":": রেপো/ব্রাঞ্চ দেখুন"))}
 }
 // সবার জন্য: GitHub থেকে লোড। অ্যাডমিন হলে টোকেন দিয়ে (সর্বশেষ ডেটা)।
 async function load(manual){
@@ -195,9 +197,10 @@ async function login(){
   setSt("⏳ যাচাই হচ্ছে…");
   try{
     const r=await fetch("https://api.github.com/repos/"+REPO,{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"}});
-    if(!r.ok)throw new Error("টোকেন ভুল বা রেপোতে অনুমতি নেই");
-    sets();const j=await r.json();if(!(j.permissions&&j.permissions.push))throw new Error("এই টোকেনে লেখার অনুমতি নেই");
-    sv(AK,{t});admin=true;$("gt").value="";setSt("✔ টোকেন সেভ হয়েছে।");render();if(lg(DK)||Q.length)await push();else await load(true);
+    if(!r.ok)throw new Error("টোকেন ভুল বা রেপোতে অনুমতি নেই ("+r.status+")");
+    const j=await r.json();
+    sv(AK,{t});admin=true;$("gt").value="";
+    setSt(j.permissions&&j.permissions.push===false?"⚠ টোকেন সেভ হয়েছে, কিন্তু লেখার অনুমতি নেই মনে হচ্ছে। Contents: Read and write দিন।":"✔ টোকেন সেভ হয়েছে।");render();if(lg(DK))await push();else await load(true);
   }catch(e){setSt("✘ "+e.message)}
 }
 
@@ -316,7 +319,7 @@ $("save").onclick=()=>{
   if(new Set(o.map(norm)).size<4){m.textContent="অপশনগুলো আলাদা হতে হবে।";return}
   if(findDup(q)){m.textContent="ডুপ্লিকেট প্রশ্ন, যোগ করা হয়নি।";return}
   Q.unshift({id:"u"+Date.now(),c:$("fc").value,q,o,a:+$("fa").value,e:$("fe").value.trim()});persist();
-  ["fq","o0","o1","o2","o3","fe"].forEach(i=>$(i).value="");$("dup").style.display="none";m.textContent="✔ যোগ হয়েছে (GitHub-এ সেভ হচ্ছে)।";
+  ["fq","o0","o1","o2","o3","fe"].forEach(i=>$(i).value="");$("dup").style.display="none";m.textContent="✔ প্রশ্ন যোগ হয়েছে। GitHub-এ সেভের অবস্থা নিচে দেখুন।";
 };
 $("bsave").onclick=()=>{
   if(!admin)return;
