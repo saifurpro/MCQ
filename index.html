@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MCQ প্রস্তুতি</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);--bg:#f3f5fa;--sf:#fff;--tx:#1b1f2a;--mu:#667085;--bd:#e3e6ee;--pr:#2f5bea;--prt:#fff;--ok:#12805c;--okb:#e4f6ee;--no:#c2331f;--nob:#fdeae7;--wr:#8a5a00;--wrb:#fff4d6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12141a;--sf:#1c1f28;--tx:#eceef4;--mu:#9aa1b2;--bd:#2d3140;--pr:#6c8cff;--prt:#0d1020;--ok:#5fd3a6;--okb:#12332a;--no:#ff8b7a;--nob:#3a1b17;--wr:#f2c15c;--wrb:#33280e}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12141a;--sf:#1c1f28;--tx:#eceef4;--mu:#9aa1b2;--bd:#2d3140;--pr:#6c8cff;--prt:#0d1020;--ok:#5fd3a6;--okb:#12332a;--no:#ff8b7a;--nob:#3a1b17;--wr:#f2c15c;--wrb:#33280e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.6}
+.w{max-width:640px;margin:0 auto;padding:14px 14px 96px}
+h1{font-size:22px;margin:4px 0 12px}h2{font-size:20px;margin:4px 0 10px}h3{font-size:16px;margin:18px 0 8px}
+input,select,textarea,button{font:inherit;color:inherit}
+.v{display:none}.v.on{display:block}
+.s,.f input,.f select,.f textarea,.set select{width:100%;padding:10px 13px;border:1px solid var(--bd);border-radius:12px;background:var(--sf)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 0 4px;scrollbar-width:none}
+.tab{white-space:nowrap;padding:6px 14px;border:1px solid var(--bd);border-radius:99px;background:var(--sf);cursor:pointer}
+.tab.on{background:var(--pr);color:var(--prt);border-color:var(--pr)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.btn{padding:9px 14px;border:1px solid var(--bd);border-radius:12px;background:var(--sf);cursor:pointer}
+.btn.p{background:var(--pr);color:var(--prt);border-color:var(--pr)}
+.mu{color:var(--mu);font-size:14px}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:12px 0}
+.cat{display:inline-block;font-size:12px;padding:1px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--bd);color:var(--mu)}
+.q{font-weight:600;margin:6px 0 10px}
+.o{display:block;width:100%;text-align:left;padding:10px 12px;margin:6px 0;border:1px solid var(--bd);border-radius:12px;background:var(--bg);cursor:pointer}
+.o.ok{background:var(--okb);border-color:var(--ok);color:var(--ok)}
+.o.no{background:var(--nob);border-color:var(--no);color:var(--no)}
+.ex{margin-top:8px;font-size:14px;color:var(--mu)}
+.pb{height:8px;background:var(--bg);border:1px solid var(--bd);border-radius:99px;overflow:hidden;margin:8px 0}.pb i{display:block;height:100%;background:var(--pr)}
+.hero{background:var(--pr);color:var(--prt);border-radius:20px;padding:18px}
+.hero .big{font-size:38px;font-weight:600;line-height:1.2}.hero small{font-size:16px;font-weight:400}
+.hero .pb{background:rgba(255,255,255,.25);border:0}.hero .pb i{background:var(--prt)}
+.hero .go{margin-top:10px;width:100%;background:var(--prt);color:var(--pr);border:0;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cc{text-align:left;background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:12px;cursor:pointer;display:block}
+.cc .ic{font-size:24px;display:block}
+.cc:last-child:nth-child(odd){grid-column:span 2}
+.wbtn{width:100%;text-align:left;cursor:pointer;display:flex;justify-content:space-between}
+.f label{display:block;font-size:14px;margin:10px 0 3px;color:var(--mu)}
+.wn{background:var(--wrb);color:var(--wr);padding:8px 12px;border-radius:10px;margin-top:8px;font-size:14px;display:none}
+.msg{font-size:14px;margin-top:8px}
+.set .item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--bd)}
+.set .item:last-child{border:0}.set select{width:auto}
+.badge{display:inline-block;font-size:12px;padding:1px 9px;border-radius:99px;background:var(--okb);color:var(--ok);margin-left:6px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--sf);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);z-index:9}
+nav button{flex:1;border:0;background:none;padding:8px 0 6px;cursor:pointer;color:var(--mu);font-size:12px;position:relative}
+nav button span{display:block;font-size:22px;line-height:1.2}
+nav button.on{color:var(--pr);font-weight:600}
+nav i{position:absolute;top:4px;left:55%;background:var(--no);color:#fff;font-style:normal;font-size:11px;min-width:18px;border-radius:99px;padding:0 4px}
+</style>
+</head>
+<body>
+<main class="w">
+<section class="v" id="v-home"></section>
+
+<section class="v" id="v-study">
+  <h2>📖 পড়া</h2>
+  <input class="s" id="ss" type="search" placeholder="প্রশ্ন, অপশন বা ব্যাখ্যা দিয়ে খুঁজুন…">
+  <div class="tabs" id="sc"></div>
+  <div class="row"><span class="mu" id="scn"></span><span style="flex:1"></span><button class="btn p" id="sres">▶ চালিয়ে যান</button></div>
+  <div id="sl"></div>
+</section>
+
+<section class="v" id="v-wrong">
+  <h2>❌ ভুল করা প্রশ্ন</h2>
+  <input class="s" id="ws" type="search" placeholder="ভুল প্রশ্নের মধ্যে খুঁজুন…">
+  <div class="tabs" id="wc"></div>
+  <div class="mu" id="wcn"></div>
+  <div id="wl"></div>
+</section>
+
+<section class="v" id="v-add">
+  <h2>➕ প্রশ্ন যোগ <span class="badge">অ্যাডমিন</span></h2>
+  <div class="card f">
+    <b>একটি প্রশ্ন</b>
+    <label>ক্যাটাগরি</label><select id="fc"></select>
+    <label>প্রশ্ন</label><textarea id="fq" rows="2"></textarea>
+    <div class="wn" id="dup"></div>
+    <label>অপশন ক</label><input id="o0"><label>অপশন খ</label><input id="o1">
+    <label>অপশন গ</label><input id="o2"><label>অপশন ঘ</label><input id="o3">
+    <label>সঠিক উত্তর</label>
+    <select id="fa"><option value="0">ক</option><option value="1">খ</option><option value="2">গ</option><option value="3">ঘ</option></select>
+    <label>ব্যাখ্যা (ঐচ্ছিক)</label><input id="fe">
+    <div class="row"><button class="btn p" id="save">সেভ করুন</button></div>
+    <div class="msg" id="m1"></div>
+  </div>
+  <div class="card f">
+    <b>একসাথে অনেক প্রশ্ন</b>
+    <p class="mu">প্রতি লাইনে একটি:<br>প্রশ্ন | ক | খ | গ | ঘ | সঠিক নম্বর (১-৪) | ব্যাখ্যা (ঐচ্ছিক)</p>
+    <label>ক্যাটাগরি</label><select id="bc"></select>
+    <textarea id="bt" rows="6" style="margin-top:8px"></textarea>
+    <div class="row"><button class="btn p" id="bsave">যোগ করুন</button></div>
+    <div class="msg" id="m2"></div>
+  </div>
+</section>
+
+<section class="v" id="v-set">
+  <h2>⚙️ সেটিংস</h2>
+  <div class="card set">
+    <div class="item"><span>থিম</span><select id="th"><option value="auto">অটো</option><option value="light">লাইট</option><option value="dark">ডার্ক</option></select></div>
+    <div class="item"><span>পড়ার ট্র্যাক রিসেট</span><button class="btn" id="rr">রিসেট</button></div>
+  </div>
+
+  <div class="card set" id="adm-on">
+    <div class="item"><span><b>অ্যাডমিন হিসেবে লগইন আছেন</b></span><button class="btn" id="glogout">লগআউট</button></div>
+    <div class="item"><span>এখনই GitHub-এ ব্যাকআপ</span><button class="btn" id="gnow">ব্যাকআপ</button></div>
+    <div class="item"><span>GitHub থেকে লোড</span><button class="btn" id="gpull">লোড</button></div>
+    <div class="item"><span>ব্যাকআপ ডাউনলোড</span><button class="btn" id="exp">ডাউনলোড</button></div>
+    <div class="item"><span>ফাইল থেকে প্রশ্ন আনুন</span><button class="btn" id="impb">ফাইল বাছুন</button><input type="file" id="impf" accept=".json" hidden></div>
+    <div class="msg" id="gst"></div>
+  </div>
+  <div class="mu" id="info"></div>
+  <div class="mu msg" id="m3"></div>
+</section>
+</main>
+<nav id="nav"></nav>
+
+<script>
+const REPO="saifurpro/MCQ",BR="master",FP="mcq-data.json";
+const CATS=["বিসিএস","প্রাইমারি","নিবন্ধন","পিএসসি","১৩-২০ গ্রেড"];
+const IC={"বিসিএস":"🏛️","প্রাইমারি":"🏫","নিবন্ধন":"📝","পিএসসি":"📋","১৩-২০ গ্রেড":"🎓"};
+const KEY="mcq_questions_v1",PK="mcq_progress_v1",TK="mcq_theme",AK="mcq_admin",DK="mcq_dirty";
+const L=["ক","খ","গ","ঘ"],BN="০১২৩৪৫৬৭৮৯";
+const $=id=>document.getElementById(id);
+const d2e=s=>String(s).replace(/[০-৯]/g,c=>BN.indexOf(c));
+const bn=n=>String(n).replace(/\d/g,c=>BN[c]);
+const norm=s=>d2e(s).toLowerCase().replace(/[\s\u200c\u200d।?,.!:;'"’“”‘()\[\]\-–—_]/g,"");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const td=()=>new Date().toLocaleDateString("en-CA");
+function lg(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+function sv(k,v){try{localStorage.setItem(k,typeof v==="string"?v:JSON.stringify(v))}catch(e){}}
+function rm(k){try{localStorage.removeItem(k)}catch(e){}}
+let Q=lg(KEY)||[
+ {c:"বিসিএস",q:"বাংলাদেশের স্বাধীনতা ঘোষণা করা হয় কত তারিখে?",o:["১৬ ডিসেম্বর ১৯৭১","২৬ মার্চ ১৯৭১","১৭ এপ্রিল ১৯৭১","২১ ফেব্রুয়ারি ১৯৫২"],a:1,e:"২৬ মার্চ ১৯৭১ স্বাধীনতা দিবস।"},
+ {c:"প্রাইমারি",q:"বাংলাদেশের জাতীয় ফুল কোনটি?",o:["গোলাপ","শাপলা","জবা","কৃষ্ণচূড়া"],a:1,e:""},
+ {c:"নিবন্ধন",q:"বাংলাদেশের রাজধানী কোনটি?",o:["চট্টগ্রাম","খুলনা","ঢাকা","রাজশাহী"],a:2,e:""},
+ {c:"পিএসসি",q:"পদ্মা নদীর উৎপত্তিস্থল কোথায়?",o:["গঙ্গোত্রী হিমবাহ","মানস সরোবর","কাঞ্চনজঙ্ঘা","ব্রহ্মপুত্র"],a:0,e:"গঙ্গা নদীর বাংলাদেশি অংশের নাম পদ্মা।"},
+ {c:"১৩-২০ গ্রেড",q:"বাংলাদেশের সংবিধানে মোট কতটি অনুচ্ছেদ আছে?",o:["১৫৩","১৫৪","১৫৫","১৫৬"],a:0,e:""}
+].map((x,i)=>({...x,id:"s"+i}));
+let P=lg(PK);if(!P||!P.a)P={a:{},d:{},last:null};
+let view="home",cat="সব",term="",wcat="সব",wterm="";
+const DEF_TOKEN="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",PIN="2026",UK="mcq_unlock";
+const tok=()=>DEF_TOKEN;
+let admin=false;try{admin=sessionStorage.getItem(UK)==="1"}catch(e){}
+const setSt=t=>{["gst","gst0"].forEach(i=>{const e=$(i);if(e)e.textContent=t})};
+const api=()=>`https://api.github.com/repos/${REPO}/contents/${FP}`;
+const hd=raw=>({Authorization:"Bearer "+tok(),Accept:raw?"application/vnd.github.raw+json":"application/vnd.github+json"});
+let st=null;
+function markDirty(){if(!admin)return;sv(DK,"1");clearTimeout(st);setSt("⏳ কিছুক্ষণ পরে GitHub-এ সেভ হবে…");st=setTimeout(push,2500)}
+const persist=()=>{sv(KEY,Q);markDirty()}, saveP=()=>sv(PK,P);
+
+async function push(){
+  if(!admin){return}
+  setSt("⏳ GitHub-এ সেভ হচ্ছে…");
+  try{
+    let sha;const r=await fetch(api()+"?ref="+BR,{headers:hd(),cache:"no-store"});
+    if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error(r.status);
+    const body=JSON.stringify({v:2,questions:Q},null,1);
+    const w=await fetch(api(),{method:"PUT",headers:hd(),body:JSON.stringify({message:"MCQ update "+new Date().toISOString(),content:btoa(unescape(encodeURIComponent(body))),branch:BR,sha})});
+    if(!w.ok)throw new Error(w.status);
+    rm(DK);setSt("✔ GitHub-এ সেভ হয়েছে: "+new Date().toLocaleTimeString("bn-BD"));
+  }catch(e){setSt("✘ সেভ ব্যর্থ ("+e.message+"): টোকেনের অনুমতি/ব্রাঞ্চ দেখুন")}
+}
+// সবার জন্য: GitHub থেকে লোড। অ্যাডমিন হলে টোকেন দিয়ে (সর্বশেষ ডেটা)।
+async function load(manual){
+  try{
+    if(admin&&lg(DK)&&!manual){await push();return}
+    let r=null;
+    if(admin){
+      r=await fetch(api()+"?ref="+BR,{headers:hd(true),cache:"no-store"});
+      if(r.status===401){rm(AK);admin=false;nav();setSt("টোকেন কাজ করছে না, আবার লগইন করুন।");r=null}
+      else if(r.status===404){push();return}
+    }
+    if(!r||!r.ok)r=await fetch(`https://raw.githubusercontent.com/${REPO}/${BR}/${FP}?t=${Date.now()}`,{cache:"no-store"});
+    if(!r.ok)throw new Error(r.status);
+    const d=await r.json(),arr=Array.isArray(d)?d:d.questions;
+    if(!Array.isArray(arr))throw new Error("ফরম্যাট");
+    Q=arr;sv(KEY,Q);render();setSt("✔ GitHub থেকে লোড হয়েছে।");
+  }catch(e){setSt("লোড করা যায়নি ("+e.message+"), সেভ করা ডেটা দেখানো হচ্ছে।")}
+}
+async function login(){
+  const t=$("gt").value.trim();if(!t){setSt("টোকেন দিন");return}
+  setSt("⏳ যাচাই হচ্ছে…");
+  try{
+    const r=await fetch("https://api.github.com/repos/"+REPO,{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"}});
+    if(!r.ok)throw new Error("টোকেন ভুল বা রেপোতে অনুমতি নেই");
+    const j=await r.json();if(!(j.permissions&&j.permissions.push))throw new Error("এই টোকেনে লেখার অনুমতি নেই");
+    sv(AK,{t});admin=true;$("gt").value="";setSt("✔ অ্যাডমিন লগইন সফল।");render();await load(true);
+  }catch(e){setSt("✘ "+e.message)}
+}
+
+const wrongs=()=>Q.filter(x=>P.a[x.id]&&!P.a[x.id].ok);
+const findDup=q=>{const n=norm(q);return n?Q.find(x=>norm(x.q)===n):null};
+const fl=(arr,c,t)=>{const n=norm(t);return arr.filter(x=>(c==="সব"||x.c===c)&&(!n||norm([x.q,...x.o,x.e,x.c].join(" ")).includes(n)))};
+
+function applyTheme(t){const r=document.documentElement;if(t==="light"||t==="dark")r.setAttribute("data-theme",t);else r.removeAttribute("data-theme")}
+applyTheme(lg(TK)||"auto");
+
+function record(x,ok){P.a[x.id]={ok};P.last=x.id;const d=P.d[td()]=P.d[td()]||{};d[x.id]=ok;saveP();nav()}
+function card(x,i){
+  const s=P.a[x.id];
+  return `<div class="card" data-id="${x.id}"><span class="cat">${x.c}</span> <span class="mu">#${bn(i+1)}</span>${s?(s.ok?' <span style="color:var(--ok)">✔ পড়া</span>':' <span style="color:var(--no)">✘ আবার দেখুন</span>'):''}
+  <div class="q">${esc(x.q)}</div>${x.o.map((o,j)=>`<button class="o" data-j="${j}">${L[j]}. ${esc(o)}</button>`).join("")}
+  <div class="ex" style="display:none"></div>${admin?'<div class="row"><button class="btn del" style="font-size:13px">মুছুন</button></div>':''}</div>`;
+}
+function showList(el,arr,empty){
+  el.innerHTML=arr.length?arr.map(card).join(""):`<p class="mu">${empty}</p>`;
+  el.querySelectorAll(".card").forEach(c=>{
+    const x=Q.find(y=>y.id===c.dataset.id);
+    c.querySelectorAll(".o").forEach(b=>b.onclick=()=>{
+      const j=+b.dataset.j;record(x,j===x.a);
+      c.querySelectorAll(".o").forEach(e=>{e.disabled=true;if(+e.dataset.j===x.a)e.classList.add("ok")});
+      if(j!==x.a)b.classList.add("no");
+      const ex=c.querySelector(".ex");ex.style.display="block";
+      ex.textContent=(j===x.a?"✔ সঠিক। ":"✘ ভুল। সঠিক উত্তর: "+L[x.a]+". ")+(x.e||"");
+    });
+    const del=c.querySelector(".del");
+    if(del)del.onclick=()=>{if(admin&&confirm("প্রশ্নটি মুছবেন?")){Q=Q.filter(y=>y.id!==x.id);persist();render()}};
+  });
+}
+function chips(el,cur,fn){
+  const sc=el.scrollLeft;
+  el.innerHTML=["সব",...CATS].map(c=>`<button class="tab ${c===cur?"on":""}" data-c="${c}">${c}</button>`).join("");
+  el.querySelectorAll(".tab").forEach(b=>b.onclick=()=>fn(b.dataset.c));el.scrollLeft=sc;
+}
+function nav(){
+  const n=wrongs().length;
+  const items=[["home","🏠","হোম"],["study","📖","পড়া"],["wrong","❌","ভুল"]];
+  if(admin)items.push(["add","➕","যোগ"]);
+  items.push(["set","⚙️","সেটিংস"]);
+  $("nav").innerHTML=items.map(([v,i,t])=>`<button data-v="${v}" class="${v===view?"on":""}"><span>${i}</span>${t}${v==="wrong"&&n?`<i>${bn(n)}</i>`:""}</button>`).join("");
+  $("nav").querySelectorAll("button").forEach(b=>b.onclick=()=>go(b.dataset.v));
+}
+function go(v){
+  if(v==="set"&&!admin){
+    const p=prompt("সেটিংসে ঢুকতে পিন দিন");
+    if(p===null)return;
+    if(p.trim()!==PIN){alert("ভুল পিন");return}
+    admin=true;try{sessionStorage.setItem(UK,"1")}catch(e){}
+    load(false);
+  }
+  if(v==="add"&&!admin)v="home";view=v;render();window.scrollTo(0,0)
+}
+function render(){
+  if(view==="add"&&!admin)view="home";
+  document.querySelectorAll(".v").forEach(s=>s.classList.toggle("on",s.id==="v-"+view));
+  nav();
+  if(view==="home")home();if(view==="study")study();if(view==="wrong")wrong();if(view==="set")sets();
+}
+function home(){
+  const d=P.d[td()]||{},n=Object.keys(d).length,k=Object.values(d).filter(Boolean).length;
+  const done=Q.filter(x=>P.a[x.id]).length,pct=Q.length?Math.round(done/Q.length*100):0;
+  const last=Q.find(x=>x.id===P.last);
+  $("v-home").innerHTML=`<h1>📚 MCQ প্রস্তুতি</h1>
+  <div class="hero"><div>আজকের পড়া</div><div class="big">${bn(n)}<small> টি প্রশ্ন</small></div>
+  <div>✔ সঠিক ${bn(k)} · ✘ ভুল ${bn(n-k)}</div><div class="pb"><i style="width:${pct}%"></i></div>
+  <div>মোট পড়া ${bn(done)}/${bn(Q.length)} (${bn(pct)}%)</div>
+  <button class="btn go" id="hres">▶ যেখানে ছিলেন সেখান থেকে চালিয়ে যান</button>
+  ${last?`<div style="font-size:13px;margin-top:8px;opacity:.9">সর্বশেষ: ${last.c} — ${esc(last.q.slice(0,36))}…</div>`:""}</div>
+  <h3>ক্যাটাগরি</h3><div class="grid">${CATS.map(c=>{const t=Q.filter(x=>x.c===c),r=t.filter(x=>P.a[x.id]).length;
+   return `<button class="cc" data-c="${c}"><span class="ic">${IC[c]}</span><b>${c}</b><div class="pb"><i style="width:${t.length?Math.round(r/t.length*100):0}%"></i></div><span class="mu">${bn(r)}/${bn(t.length)} পড়া</span></button>`}).join("")}</div>
+  <h3>রিভিশন</h3><button class="card wbtn" id="hw"><span>❌ ভুল করা প্রশ্ন আবার পড়ুন</span><b>${bn(wrongs().length)}</b></button>`;
+  $("hres").onclick=()=>resume(last?last.c:"সব");
+  $("v-home").querySelectorAll(".cc").forEach(b=>b.onclick=()=>{cat=b.dataset.c;term="";$("ss").value="";go("study")});
+  $("hw").onclick=()=>go("wrong");
+}
+function study(){
+  chips($("sc"),cat,c=>{cat=c;study()});
+  const a=fl(Q,cat,term);$("scn").textContent=`${bn(a.length)}টি প্রশ্ন`;
+  showList($("sl"),a,"কোনো প্রশ্ন পাওয়া যায়নি।");
+}
+function wrong(){
+  chips($("wc"),wcat,c=>{wcat=c;wrong()});
+  const a=fl(wrongs(),wcat,wterm);$("wcn").textContent=`${bn(a.length)}টি ভুল প্রশ্ন`;
+  showList($("wl"),a,"কোনো ভুল প্রশ্ন নেই 🎉");
+}
+function resume(c){
+  cat=c;const v=Q.filter(x=>cat==="সব"||x.c===cat);
+  if(!v.length){alert("কোনো প্রশ্ন নেই");return}
+  const s=v.findIndex(x=>x.id===P.last)+1;let t=null;
+  for(let i=0;i<v.length;i++){const x=v[(s+i)%v.length];if(!P.a[x.id]){t=x;break}}
+  if(!t){alert("এই ক্যাটাগরির সব প্রশ্ন পড়া শেষ 🎉");return}
+  term="";$("ss").value="";go("study");
+  const el=document.querySelector(`#sl [data-id="${t.id}"]`);
+  if(el){el.scrollIntoView({block:"center"});el.style.outline="2px solid var(--pr)"}
+}
+function sets(){
+  $("adm-on").style.display=admin?"block":"none";
+  $("info").textContent=`মোট প্রশ্ন ${bn(Q.length)}টি · পড়া হয়েছে ${bn(Q.filter(x=>P.a[x.id]).length)}টি। প্রশ্ন GitHub থেকে আসে; পড়ার হিসাব শুধু এই ব্রাউজারে থাকে।`;
+  $("th").value=lg(TK)||"auto";
+}
+
+$("ss").oninput=e=>{term=e.target.value;study()};
+$("ws").oninput=e=>{wterm=e.target.value;wrong()};
+$("sres").onclick=()=>resume(cat);
+[$("fc"),$("bc")].forEach(s=>s.innerHTML=CATS.map(c=>`<option>${c}</option>`).join(""));
+$("fq").oninput=()=>{const d=findDup($("fq").value),w=$("dup");w.style.display=d?"block":"none";if(d)w.textContent="⚠ এই প্রশ্ন আগেই আছে ("+d.c+")।"};
+$("save").onclick=()=>{
+  if(!admin)return;
+  const q=$("fq").value.trim(),o=[0,1,2,3].map(i=>$("o"+i).value.trim()),m=$("m1");
+  if(!q||o.some(v=>!v)){m.textContent="প্রশ্ন ও চারটি অপশনই দিন।";return}
+  if(new Set(o.map(norm)).size<4){m.textContent="অপশনগুলো আলাদা হতে হবে।";return}
+  if(findDup(q)){m.textContent="ডুপ্লিকেট প্রশ্ন, যোগ করা হয়নি।";return}
+  Q.unshift({id:"u"+Date.now(),c:$("fc").value,q,o,a:+$("fa").value,e:$("fe").value.trim()});persist();
+  ["fq","o0","o1","o2","o3","fe"].forEach(i=>$(i).value="");$("dup").style.display="none";m.textContent="✔ যোগ হয়েছে (GitHub-এ সেভ হচ্ছে)।";
+};
+$("bsave").onclick=()=>{
+  if(!admin)return;
+  let ok=0,dup=0,bad=0;
+  $("bt").value.split("\n").map(s=>s.trim()).filter(Boolean).forEach(line=>{
+    const p=line.split("|").map(s=>s.trim()),a=parseInt(d2e(p[5]),10)-1;
+    if(p.length<6||p.slice(0,5).some(v=>!v)||!(a>=0&&a<4)){bad++;return}
+    if(findDup(p[0])){dup++;return}
+    Q.unshift({id:"b"+Date.now()+Math.random().toString(36).slice(2,6),c:$("bc").value,q:p[0],o:p.slice(1,5),a,e:p[6]||""});ok++;
+  });
+  persist();$("m2").textContent=`✔ ${bn(ok)}টি যোগ হয়েছে, ${bn(dup)}টি ডুপ্লিকেট বাদ, ${bn(bad)}টি ফরম্যাট ভুল।`;if(ok)$("bt").value="";
+};
+$("th").onchange=e=>{sv(TK,e.target.value);applyTheme(e.target.value)};
+$("glogout").onclick=()=>{if(confirm("অ্যাডমিন মোড বন্ধ করবেন?")){try{sessionStorage.removeItem(UK)}catch(e){}admin=false;view="home";render()}};
+$("gnow").onclick=push;
+$("gpull").onclick=()=>{if(confirm("GitHub-এর ডেটা দিয়ে এই ডিভাইসের ডেটা বদলে যাবে। চালিয়ে যাবেন?")){rm(DK);load(true)}};
+$("exp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({v:2,questions:Q},null,1)],{type:"application/json"}));a.download="mcq-backup.json";a.click()};
+$("impb").onclick=()=>$("impf").click();
+$("impf").onchange=e=>{
+  const f=e.target.files[0];if(!f||!admin)return;const r=new FileReader();
+  r.onload=()=>{try{
+    let ok=0,dup=0;(j=>Array.isArray(j)?j:(j.questions||[]))(JSON.parse(r.result)).forEach(x=>{
+      if(!x||!x.q||!Array.isArray(x.o)||x.o.length!==4||!(x.a>=0&&x.a<4)||!CATS.includes(x.c))return;
+      if(findDup(x.q)){dup++;return}Q.push({id:"i"+Date.now()+Math.random().toString(36).slice(2,6),c:x.c,q:x.q,o:x.o,a:x.a,e:x.e||""});ok++;
+    });persist();$("m3").textContent=`✔ ${bn(ok)}টি যোগ হয়েছে, ${bn(dup)}টি ডুপ্লিকেট বাদ।`;sets();nav();
+  }catch(err){$("m3").textContent="ফাইলটি পড়া যায়নি।"}};
+  r.readAsText(f);e.target.value="";
+};
+$("rr").onclick=()=>{if(confirm("পড়ার ট্র্যাক রিসেট করবেন? প্রশ্ন মুছবে না।")){P={a:{},d:{},last:null};saveP();render()}};
+render();
+load(false);
+</script>
+</body>
+</html>
