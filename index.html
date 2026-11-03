@@ -106,6 +106,14 @@ nav i{position:absolute;top:4px;left:55%;background:var(--no);color:#fff;font-st
     <div class="item"><span>পড়ার ট্র্যাক রিসেট</span><button class="btn" id="rr">রিসেট</button></div>
   </div>
 
+  <div class="card set" id="tk-card" style="display:none">
+    <div style="font-weight:600;margin-bottom:6px">🔑 GitHub টোকেন (API Key)</div>
+    <div class="mu" style="margin-bottom:8px">এখানে টোকেন বসিয়ে সেভ করুন। এটা শুধু এই ব্রাউজারে থাকবে, HTML ফাইলে লেখা হবে না। অবস্থা: <b id="tkst"></b></div>
+    <input id="gt" type="password" autocomplete="off" placeholder="github_pat_… পেস্ট করুন" style="width:100%;padding:10px 13px;border:1px solid var(--bd);border-radius:12px;background:var(--sf)">
+    <div class="row"><button class="btn p" id="gtsave">টোকেন সেভ করুন</button><button class="btn" id="gtshow">দেখান/লুকান</button><button class="btn" id="gtdel">টোকেন মুছুন</button></div>
+    <div class="msg" id="gst0"></div>
+  </div>
+
   <div class="card set" id="adm-on">
     <div class="item"><span><b>অ্যাডমিন হিসেবে লগইন আছেন</b></span><button class="btn" id="glogout">লগআউট</button></div>
     <div class="item"><span>এখনই GitHub-এ ব্যাকআপ</span><button class="btn" id="gnow">ব্যাকআপ</button></div>
@@ -135,27 +143,24 @@ const td=()=>new Date().toLocaleDateString("en-CA");
 function lg(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
 function sv(k,v){try{localStorage.setItem(k,typeof v==="string"?v:JSON.stringify(v))}catch(e){}}
 function rm(k){try{localStorage.removeItem(k)}catch(e){}}
-let Q=lg(KEY)||[
- {c:"বিসিএস",q:"বাংলাদেশের স্বাধীনতা ঘোষণা করা হয় কত তারিখে?",o:["১৬ ডিসেম্বর ১৯৭১","২৬ মার্চ ১৯৭১","১৭ এপ্রিল ১৯৭১","২১ ফেব্রুয়ারি ১৯৫২"],a:1,e:"২৬ মার্চ ১৯৭১ স্বাধীনতা দিবস।"},
- {c:"প্রাইমারি",q:"বাংলাদেশের জাতীয় ফুল কোনটি?",o:["গোলাপ","শাপলা","জবা","কৃষ্ণচূড়া"],a:1,e:""},
- {c:"নিবন্ধন",q:"বাংলাদেশের রাজধানী কোনটি?",o:["চট্টগ্রাম","খুলনা","ঢাকা","রাজশাহী"],a:2,e:""},
- {c:"পিএসসি",q:"পদ্মা নদীর উৎপত্তিস্থল কোথায়?",o:["গঙ্গোত্রী হিমবাহ","মানস সরোবর","কাঞ্চনজঙ্ঘা","ব্রহ্মপুত্র"],a:0,e:"গঙ্গা নদীর বাংলাদেশি অংশের নাম পদ্মা।"},
- {c:"১৩-২০ গ্রেড",q:"বাংলাদেশের সংবিধানে মোট কতটি অনুচ্ছেদ আছে?",o:["১৫৩","১৫৪","১৫৫","১৫৬"],a:0,e:""}
-].map((x,i)=>({...x,id:"s"+i}));
+const isDummy=x=>x&&/^s[0-4]$/.test(x.id);
+let Q=(lg(KEY)||[]).filter(x=>!isDummy(x));
 let P=lg(PK);if(!P||!P.a)P={a:{},d:{},last:null};
 let view="home",cat="সব",term="",wcat="সব",wterm="";
-const DEF_TOKEN="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",PIN="2026",UK="mcq_unlock";
-const tok=()=>DEF_TOKEN;
-let admin=false;try{admin=sessionStorage.getItem(UK)==="1"}catch(e){}
+const PIN="2026",UK="mcq_unlock";
+const tok=()=>{const a=lg(AK);return (a&&a.t)||""};
+let admin=false;try{admin=localStorage.getItem(UK)==="1"}catch(e){}
 const setSt=t=>{["gst","gst0"].forEach(i=>{const e=$(i);if(e)e.textContent=t})};
 const api=()=>`https://api.github.com/repos/${REPO}/contents/${FP}`;
 const hd=raw=>({Authorization:"Bearer "+tok(),Accept:raw?"application/vnd.github.raw+json":"application/vnd.github+json"});
+const hasTok=()=>!!tok();
 let st=null;
 function markDirty(){if(!admin)return;sv(DK,"1");clearTimeout(st);setSt("⏳ কিছুক্ষণ পরে GitHub-এ সেভ হবে…");st=setTimeout(push,2500)}
 const persist=()=>{sv(KEY,Q);markDirty()}, saveP=()=>sv(PK,P);
 
 async function push(){
   if(!admin){return}
+  if(!hasTok()){setSt("⚠ GitHub-এ সেভ করতে নিচে টোকেন দিন (এখন শুধু এই ডিভাইসে সেভ আছে)।");return}
   setSt("⏳ GitHub-এ সেভ হচ্ছে…");
   try{
     let sha;const r=await fetch(api()+"?ref="+BR,{headers:hd(),cache:"no-store"});
@@ -164,23 +169,25 @@ async function push(){
     const w=await fetch(api(),{method:"PUT",headers:hd(),body:JSON.stringify({message:"MCQ update "+new Date().toISOString(),content:btoa(unescape(encodeURIComponent(body))),branch:BR,sha})});
     if(!w.ok)throw new Error(w.status);
     rm(DK);setSt("✔ GitHub-এ সেভ হয়েছে: "+new Date().toLocaleTimeString("bn-BD"));
-  }catch(e){setSt("✘ সেভ ব্যর্থ ("+e.message+"): টোকেনের অনুমতি/ব্রাঞ্চ দেখুন")}
+  }catch(e){setSt("✘ সেভ ব্যর্থ ("+e.message+")"+(String(e.message)==="401"?": টোকেন অকার্যকর, নতুন টোকেন দিন":": টোকেনের অনুমতি/ব্রাঞ্চ দেখুন"))}
 }
 // সবার জন্য: GitHub থেকে লোড। অ্যাডমিন হলে টোকেন দিয়ে (সর্বশেষ ডেটা)।
 async function load(manual){
   try{
-    if(admin&&lg(DK)&&!manual){await push();return}
+    if(admin&&hasTok()&&lg(DK)&&!manual){await push();return}
     let r=null;
-    if(admin){
+    if(admin&&hasTok()){
       r=await fetch(api()+"?ref="+BR,{headers:hd(true),cache:"no-store"});
-      if(r.status===401){rm(AK);admin=false;nav();setSt("টোকেন কাজ করছে না, আবার লগইন করুন।");r=null}
-      else if(r.status===404){push();return}
+      if(r.status===401)setSt("⚠ টোকেন কাজ করছে না, নতুন টোকেন দিন। পাবলিক ফাইল থেকে লোড হচ্ছে…");
+      if(!r.ok)r=null;
     }
-    if(!r||!r.ok)r=await fetch(`https://raw.githubusercontent.com/${REPO}/${BR}/${FP}?t=${Date.now()}`,{cache:"no-store"});
+    if(!r)r=await fetch(`https://raw.githubusercontent.com/${REPO}/${BR}/${FP}?t=${Date.now()}`,{cache:"no-store"});
+    if(r.status===404){Q=[];sv(KEY,Q);render();return}
     if(!r.ok)throw new Error(r.status);
     const d=await r.json(),arr=Array.isArray(d)?d:d.questions;
     if(!Array.isArray(arr))throw new Error("ফরম্যাট");
-    Q=arr;sv(KEY,Q);render();setSt("✔ GitHub থেকে লোড হয়েছে।");
+    Q=arr.filter(x=>!isDummy(x));sv(KEY,Q);render();
+    if(!/টোকেন/.test($("gst")?$("gst").textContent:""))setSt("✔ GitHub থেকে লোড হয়েছে।");
   }catch(e){setSt("লোড করা যায়নি ("+e.message+"), সেভ করা ডেটা দেখানো হচ্ছে।")}
 }
 async function login(){
@@ -189,8 +196,8 @@ async function login(){
   try{
     const r=await fetch("https://api.github.com/repos/"+REPO,{headers:{Authorization:"Bearer "+t,Accept:"application/vnd.github+json"}});
     if(!r.ok)throw new Error("টোকেন ভুল বা রেপোতে অনুমতি নেই");
-    const j=await r.json();if(!(j.permissions&&j.permissions.push))throw new Error("এই টোকেনে লেখার অনুমতি নেই");
-    sv(AK,{t});admin=true;$("gt").value="";setSt("✔ অ্যাডমিন লগইন সফল।");render();await load(true);
+    sets();const j=await r.json();if(!(j.permissions&&j.permissions.push))throw new Error("এই টোকেনে লেখার অনুমতি নেই");
+    sv(AK,{t});admin=true;$("gt").value="";setSt("✔ টোকেন সেভ হয়েছে।");render();if(lg(DK)||Q.length)await push();else await load(true);
   }catch(e){setSt("✘ "+e.message)}
 }
 
@@ -241,7 +248,7 @@ function go(v){
     const p=prompt("সেটিংসে ঢুকতে পিন দিন");
     if(p===null)return;
     if(p.trim()!==PIN){alert("ভুল পিন");return}
-    admin=true;try{sessionStorage.setItem(UK,"1")}catch(e){}
+    admin=true;try{localStorage.setItem(UK,"1")}catch(e){}
     load(false);
   }
   if(v==="add"&&!admin)v="home";view=v;render();window.scrollTo(0,0)
@@ -291,8 +298,10 @@ function resume(c){
 }
 function sets(){
   $("adm-on").style.display=admin?"block":"none";
-  $("info").textContent=`মোট প্রশ্ন ${bn(Q.length)}টি · পড়া হয়েছে ${bn(Q.filter(x=>P.a[x.id]).length)}টি। প্রশ্ন GitHub থেকে আসে; পড়ার হিসাব শুধু এই ব্রাউজারে থাকে।`;
+  $("tk-card").style.display=admin?"block":"none";
+  $("info").textContent=`মোট প্রশ্ন ${bn(Q.length)}টি · পড়া হয়েছে ${bn(Q.filter(x=>P.a[x.id]).length)}টি। প্রশ্ন GitHub থেকে আসে; পড়ার হিসাব শুধু এই ব্রাউজারে থাকে। (সংস্করণ ৩)`;
   $("th").value=lg(TK)||"auto";
+  $("tkst").textContent=hasTok()?"(সেভ আছে)":"(নেই)";
 }
 
 $("ss").oninput=e=>{term=e.target.value;study()};
@@ -321,8 +330,11 @@ $("bsave").onclick=()=>{
   persist();$("m2").textContent=`✔ ${bn(ok)}টি যোগ হয়েছে, ${bn(dup)}টি ডুপ্লিকেট বাদ, ${bn(bad)}টি ফরম্যাট ভুল।`;if(ok)$("bt").value="";
 };
 $("th").onchange=e=>{sv(TK,e.target.value);applyTheme(e.target.value)};
-$("glogout").onclick=()=>{if(confirm("অ্যাডমিন মোড বন্ধ করবেন?")){try{sessionStorage.removeItem(UK)}catch(e){}admin=false;view="home";render()}};
+$("glogout").onclick=()=>{if(confirm("অ্যাডমিন মোড বন্ধ করবেন?")){try{localStorage.removeItem(UK)}catch(e){}admin=false;view="home";render()}};
 $("gnow").onclick=push;
+$("gtsave").onclick=login;
+$("gtshow").onclick=()=>{const i=$("gt");i.type=i.type==="password"?"text":"password"};
+$("gtdel").onclick=()=>{rm(AK);setSt("টোকেন মুছে ফেলা হয়েছে।");sets()};
 $("gpull").onclick=()=>{if(confirm("GitHub-এর ডেটা দিয়ে এই ডিভাইসের ডেটা বদলে যাবে। চালিয়ে যাবেন?")){rm(DK);load(true)}};
 $("exp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({v:2,questions:Q},null,1)],{type:"application/json"}));a.download="mcq-backup.json";a.click()};
 $("impb").onclick=()=>$("impf").click();
