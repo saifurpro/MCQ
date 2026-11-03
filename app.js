@@ -8,7 +8,7 @@ const CATS = ["বিসিএস", "প্রাইমারি", "নিবন
 const ICONS = {"বিসিএস":"🏛️", "প্রাইমারি":"🏫", "নিবন্ধন":"📝", "পিএসসি":"📋", "১৩-২০ গ্রেড":"🎓"};
 const L = ["ক", "খ", "গ", "ঘ"];
 const BN = "০১২৩৪৫৬৭৮৯";
-const KEY = "mcq_questions_v1", PK = "mcq_progress_v1", TK = "mcq_theme", AK = "mcq_admin", UK = "mcq_unlock";
+const KEY = "mcq_questions_v1", PK = "mcq_progress_v1", TK = "mcq_theme", AK = "mcq_admin", UK = "mcq_unlock", PIN_KEY = "mcq_settings_pin";
 const $ = id => document.getElementById(id);
 const d2e = s => String(s).replace(/[০-৯]/g, c => BN.indexOf(c));
 const bn = n => String(n).replace(/\d/g, c => BN[c]);
@@ -18,6 +18,10 @@ const today = () => new Date().toLocaleDateString("en-CA");
 const localGet = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (_) { return null; } };
 const localSet = (k, v) => { try { localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v)); } catch (_) {} };
 const localRemove = k => { try { localStorage.removeItem(k); } catch (_) {} };
+function currentPin() {
+  const saved = localGet(PIN_KEY);
+  return saved && typeof saved.value === "string" ? saved.value : "2026";
+}
 const isDummy = x => x && /^s[0-4]$/.test(x.id);
 const b64 = text => { const bytes = new TextEncoder().encode(text); let binary = ""; bytes.forEach(b => binary += String.fromCharCode(b)); return btoa(binary); };
 const slug = c => "c" + CATS.indexOf(c);
@@ -29,7 +33,92 @@ const duplicateIndex = new Map(CATS.map(c => [c, new Set()]));
 let selectedCat = CATS[0], wrongCat = CATS[0], view = "home", term = "", wrongTerm = "";
 let shown = PAGE_SIZE, wrongShown = PAGE_SIZE, admin = false, legacyData = false;
 let dirtyChunks = new Set(), dirtyMeta = false, saveTimer = null, searchTimer = null, examTimer = null, examState = null, pushBusy = false, moreObserver = null, moreInFlight = false;
+let installPromptEvent = null, installTimer = null;
 try { admin = localStorage.getItem(UK) === "1"; } catch (_) {}
+
+function isInstalled() {
+  return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+function appDialog(message, type = "alert", initialValue = "") {
+  return new Promise(resolve => {
+    const box = $("appDialog"), input = $("appDialogInput"), cancel = $("appDialogCancel"), ok = $("appDialogOk");
+    $("appDialogMessage").textContent = message;
+    input.style.display = type === "prompt" ? "block" : "none";
+    input.value = initialValue;
+    cancel.style.display = type === "alert" ? "none" : "inline-block";
+    ok.textContent = type === "confirm" ? "হ্যাঁ" : (type === "prompt" ? "প্রবেশ করুন" : "ঠিক আছে");
+    box.classList.add("on");
+    const finish = value => {
+      box.classList.remove("on");
+      ok.removeEventListener("click", accept);
+      cancel.removeEventListener("click", decline);
+      input.removeEventListener("keydown", onKey);
+      document.removeEventListener("keydown", onEscape);
+      resolve(value);
+    };
+    const accept = () => finish(type === "prompt" ? input.value : true);
+    const decline = () => finish(type === "prompt" ? null : false);
+    const onKey = event => { if (event.key === "Enter") accept(); };
+    const onEscape = event => { if (event.key === "Escape") decline(); };
+    ok.addEventListener("click", accept);
+    cancel.addEventListener("click", decline);
+    input.addEventListener("keydown", onKey);
+    document.addEventListener("keydown", onEscape);
+    (type === "prompt" ? input : ok).focus();
+  });
+}
+function setupInstallPrompt() {
+  const promptBox = $("installPop");
+  if (!promptBox || !isMobileDevice() || isInstalled()) return;
+  const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const hidePrompt = () => { promptBox.classList.remove("on"); clearTimeout(installTimer); };
+  const showPrompt = () => {
+    if (isInstalled() || sessionStorage.getItem("mcq_install_later") === "1") return;
+    if (installPromptEvent) {
+      $("installCopy").textContent = "দ্রুত খুলুন, হোম স্ক্রিন থেকে পড়ুন এবং অ্যাপের মতো ব্যবহার করুন।";
+      $("installAction").textContent = "এখনই ইনস্টল";
+    } else {
+      $("installCopy").textContent = isAppleMobile
+        ? "ইনস্টল করতে Safari-এর Share বোতাম চাপুন, তারপর ‘Add to Home Screen’ নির্বাচন করুন।"
+        : "ইনস্টল অপশন না এলে ব্রাউজারের মেনু (⋮) খুলে ‘Install app’ বা ‘Add to Home screen’ চাপুন।";
+      $("installAction").textContent = isAppleMobile ? "নির্দেশনা দেখুন" : "ইনস্টল অপশন দেখুন";
+    }
+    promptBox.classList.add("on");
+  };
+  window.addEventListener("beforeinstallprompt", event => {
+    event.preventDefault(); installPromptEvent = event;
+    if (!isInstalled() && sessionStorage.getItem("mcq_install_later") !== "1") showPrompt();
+  });
+  window.addEventListener("appinstalled", () => {
+    installPromptEvent = null; sessionStorage.removeItem("mcq_install_later"); hidePrompt();
+  });
+  $("installAction").onclick = async () => {
+    if (isInstalled()) { hidePrompt(); return; }
+    if (!installPromptEvent) {
+      $("installCopy").textContent = isAppleMobile
+        ? "Safari-তে পেজটি খুলে Share আইকন → Add to Home Screen → Add চাপুন।"
+        : "ব্রাউজারের ⋮ মেনু → Install app / Add to Home screen বেছে নিন। ব্রাউজার অনুমতি না দিলে ইনস্টল জোর করে চালু করা যায় না।";
+      return;
+    }
+    installPromptEvent.prompt();
+    const choice = await installPromptEvent.userChoice;
+    installPromptEvent = null;
+    if (choice && choice.outcome === "accepted") hidePrompt();
+    else { sessionStorage.setItem("mcq_install_later", "1"); hidePrompt(); }
+  };
+  const deferInstall = () => { sessionStorage.setItem("mcq_install_later", "1"); hidePrompt(); };
+  $("installClose").onclick = deferInstall;
+  $("installLater").onclick = deferInstall;
+  installTimer = setTimeout(showPrompt, 1800);
+}
+async function registerServiceWorker() {
+  if (!("serviceWorker" in navigator) || !window.isSecureContext) return;
+  try { await navigator.serviceWorker.register("./sw.js"); }
+  catch (error) { console.warn("Service worker registration failed:", error); }
+}
 
 function blankManifest() {
   const categories = {};
@@ -329,11 +418,11 @@ function nav() {
   $("nav").innerHTML = items.map(([v, icon, label]) => `<button data-v="${v}" class="${v === view || (view === "wrong" && v === "study") ? "on" : ""}"><span>${icon}</span>${label}</button>`).join("");
   $("nav").querySelectorAll("button").forEach(button => button.onclick = () => go(button.dataset.v));
 }
-function go(next) {
+async function go(next) {
   if (next === "set" && !admin) {
-    const pin = prompt("সেটিংসে ঢুকতে পিন দিন");
+    const pin = await appDialog("সেটিংসে ঢুকতে পিন দিন", "prompt");
     if (pin === null) return;
-    if (pin.trim() !== "2026") { alert("ভুল পিন"); return; }
+    if (d2e(pin.trim()) !== currentPin()) { await appDialog("ভুল পিন"); return; }
     admin = true; try { localStorage.setItem(UK, "1"); } catch (_) {}
   }
   if (next === "add" && !admin) next = "home";
@@ -379,7 +468,7 @@ function attachQuestionEvents(container) {
       explanation.textContent = (answer === Number(question.a) ? "✔ সঠিক। " : "✘ ভুল। সঠিক উত্তর: " + L[question.a] + ". ") + (question.e || "");
     });
     const del = card.querySelector(".del");
-    if (del) del.onclick = () => { if (admin && confirm("প্রশ্নটি মুছবেন?")) removeQuestion(question, card.dataset.path); };
+    if (del) del.onclick = async () => { if (admin && await appDialog("প্রশ্নটি মুছবেন?", "confirm")) removeQuestion(question, card.dataset.path); };
   });
 }
 function record(question, correct, path) {
@@ -542,7 +631,7 @@ async function startExam() {
     }
     for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
     const questions = pool.slice(0, Math.min(requested, pool.length));
-    if (!questions.length) { alert("এই ক্যাটাগরিতে এখনো প্রশ্ন নেই।"); return; }
+    if (!questions.length) { await appDialog("এই ক্যাটাগরিতে এখনো প্রশ্ন নেই।"); return; }
     examState = {questions, answers:{}, seconds:questions.length * 60, category};
     $("examsetup").style.display = "none"; $("examrun").style.display = "block"; $("examresult").style.display = "none";
     drawExam(); updateExamTimer(); clearInterval(examTimer); examTimer = setInterval(() => { examState.seconds--; updateExamTimer(); if (examState.seconds <= 0) finishExam(true); }, 1000);
@@ -640,24 +729,38 @@ $("bsave").onclick = async () => {
 };
 $("th").onchange = event => { localSet(TK, event.target.value); applyTheme(event.target.value); };
 $("goalSave").onclick = () => { P.goal = Math.max(1, Math.min(500, Number($("goalInput").value) || 50)); setProgress(); home(); $("m3").textContent = `দৈনিক লক্ষ্য ${bn(P.goal)}টি সেট হয়েছে।`; };
-$("glogout").onclick = () => { if (confirm("অ্যাডমিন মোড বন্ধ করবেন?")) { localRemove(UK); admin = false; view = "home"; render(); } };
+$("pinSave").onclick = async () => {
+  const current = d2e($("pinCurrent").value.trim());
+  const next = d2e($("pinNew").value.trim());
+  const repeat = d2e($("pinConfirm").value.trim());
+  const message = $("pinMsg");
+  if (current !== currentPin()) { message.textContent = "বর্তমান পিনটি সঠিক নয়।"; return; }
+  if (!/^\d{4,12}$/.test(next)) { message.textContent = "নতুন পিন ৪–১২ সংখ্যার হতে হবে।"; return; }
+  if (next !== repeat) { message.textContent = "নতুন পিন দুটি মিলছে না।"; return; }
+  localSet(PIN_KEY, {value:next});
+  ["pinCurrent", "pinNew", "pinConfirm"].forEach(id => $(id).value = "");
+  message.textContent = "✔ পিন পরিবর্তন হয়েছে। পরেরবার সেটিংসে ঢুকতে নতুন পিন দিন।";
+};
+$("glogout").onclick = async () => { if (await appDialog("অ্যাডমিন মোড বন্ধ করবেন?", "confirm")) { localRemove(UK); admin = false; view = "home"; render(); } };
 $("gnow").onclick = push;
 $("gtsave").onclick = login;
 $("gtshow").onclick = () => { const input = $("gt"); input.type = input.type === "password" ? "text" : "password"; };
 $("gtdel").onclick = () => { localRemove(AK); setStatus("টোকেন মুছে ফেলা হয়েছে।"); sets(); };
 $("gpull").onclick = async () => {
-  if (!confirm("GitHub-এর ডেটা দিয়ে এই ডিভাইসের ক্যাশে রিফ্রেশ হবে। চালিয়ে যাবেন?")) return;
+  if (!await appDialog("GitHub-এর ডেটা দিয়ে এই ডিভাইসের ক্যাশে রিফ্রেশ হবে। চালিয়ে যাবেন?", "confirm")) return;
   try { M = normalizeManifest(await rawJson(INDEX_FILE)); await dbPut("manifest", M); await dbClearChunks(); chunkQuestions.clear(); idToPath.clear(); activeQuestionIds.clear(); duplicateIndex.forEach(keys => keys.clear()); Q = []; loadedChunks = []; dirtyChunks.clear(); dirtyMeta = false; legacyData = false; await dbPut("dirty", null); await dbPut("migrationPending", false); render(); setStatus("✔ GitHub থেকে সূচি রিফ্রেশ হয়েছে।"); }
   catch (error) { setStatus("লোড করা যায়নি: " + error.message); }
 };
 $("exp").onclick = exportAll;
 $("impb").onclick = () => $("impf").click();
 $("impf").onchange = event => { importFile(event.target.files[0]); event.target.value = ""; };
-$("rr").onclick = () => { if (confirm("পড়ার ট্র্যাক রিসেট করবেন? প্রশ্ন মুছবে না।")) { P = {a:{}, d:{}, last:null, goal:P.goal || 50}; setProgress(); render(); } };
+$("rr").onclick = async () => { if (await appDialog("পড়ার ট্র্যাক রিসেট করবেন? প্রশ্ন মুছবে না।", "confirm")) { P = {a:{}, d:{}, last:null, goal:P.goal || 50}; setProgress(); render(); } };
 $("examStart").onclick = startExam;
-$("examSubmit").onclick = () => { if (confirm("পরীক্ষা শেষ করে ফলাফল দেখবেন?")) finishExam(false); };
+$("examSubmit").onclick = async () => { if (await appDialog("পরীক্ষা শেষ করে ফলাফল দেখবেন?", "confirm")) finishExam(false); };
 
 async function init() {
+  setupInstallPrompt();
+  registerServiceWorker();
   ["fc", "bc"].forEach(id => { $(id).innerHTML = CATS.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join(""); });
   db = await dbOpen();
   P = (await dbGet("progress")) || localGet(PK) || {a:{}, d:{}, last:null, goal:50};

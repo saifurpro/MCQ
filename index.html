@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MCQ প্রস্তুতি</title>
+<meta name="theme-color" content="#2f5bea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MCQ প্রস্তুতি">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);--bg:#f3f5fa;--sf:#fff;--tx:#1b1f2a;--mu:#667085;--bd:#e3e6ee;--pr:#2f5bea;--pr2:#5b3fe0;--prt2:#fff;--prt:#fff;--ok:#12805c;--okb:#e4f6ee;--no:#c2331f;--nob:#fdeae7;--wr:#8a5a00;--wrb:#fff4d6}
@@ -54,6 +60,20 @@ nav button{min-width:0;font-size:11px}
 nav button span{display:block;font-size:22px;line-height:1.2}
 nav button.on{color:var(--pr);font-weight:600}
 nav i{position:absolute;top:4px;left:55%;background:var(--no);color:#fff;font-style:normal;font-size:11px;min-width:18px;border-radius:99px;padding:0 4px}
+.install-pop{position:fixed;left:12px;right:12px;bottom:calc(68px + env(safe-area-inset-bottom,0px));z-index:30;max-width:616px;margin:0 auto;background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:18px;padding:14px;box-shadow:0 10px 38px rgba(20,30,80,.28);display:none}
+.install-pop.on{display:block;animation:install-in .24s ease-out}
+.install-pop .install-title{font-size:17px;font-weight:600}
+.install-pop .install-copy{font-size:14px;color:var(--mu);margin:3px 28px 8px 0}
+.install-pop .install-close{position:absolute;right:10px;top:8px;border:0;background:transparent;font-size:22px;color:var(--mu);cursor:pointer}
+.install-pop .row{margin-bottom:0}
+@keyframes install-in{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.app-dialog{position:fixed;inset:0;z-index:40;display:none;place-items:center;padding:20px;background:rgba(10,14,30,.48)}
+.app-dialog.on{display:grid}
+.app-dialog-box{width:min(100%,420px);background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:0 18px 54px rgba(0,0,0,.28)}
+.app-dialog-box h2{margin:0 32px 8px 0}
+.app-dialog-box p{margin:0 0 12px;white-space:pre-line}
+.app-dialog-box input{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);margin-bottom:8px}
+.app-dialog-box .row{justify-content:flex-end}
 
 #hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:linear-gradient(135deg,var(--pr),var(--pr2));color:var(--prt2);box-shadow:0 2px 14px rgba(20,30,80,.22)}
 #hd .in{max-width:640px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -141,6 +161,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <div class="item"><span>পড়ার ট্র্যাক রিসেট</span><button class="btn" id="rr">রিসেট</button></div>
   </div>
 
+  <div class="card f" id="pin-card">
+    <b>🔐 সেটিংসের পিন পরিবর্তন</b>
+    <p class="mu">নতুন পিন ৪–১২ সংখ্যার হতে পারে। এটি শুধু এই ব্রাউজারে সেভ থাকবে।</p>
+    <label for="pinCurrent">বর্তমান পিন</label><input id="pinCurrent" type="password" inputmode="numeric" autocomplete="current-password">
+    <label for="pinNew">নতুন পিন</label><input id="pinNew" type="password" inputmode="numeric" autocomplete="new-password">
+    <label for="pinConfirm">নতুন পিন আবার লিখুন</label><input id="pinConfirm" type="password" inputmode="numeric" autocomplete="new-password">
+    <div class="row"><button class="btn p" id="pinSave">পিন পরিবর্তন করুন</button></div>
+    <div class="msg" id="pinMsg" aria-live="polite"></div>
+  </div>
+
   <div class="card set" id="tk-card" style="display:none">
     <div style="font-weight:600;margin-bottom:6px">🔑 GitHub টোকেন (API Key)</div>
     <div class="mu" style="margin-bottom:8px">এখানে টোকেন বসিয়ে সেভ করুন। এটা শুধু এই ব্রাউজারে থাকবে, HTML ফাইলে লেখা হবে না। অবস্থা: <b id="tkst"></b></div>
@@ -162,6 +192,20 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="mu msg" id="m3"></div>
 </section>
 </main>
+<aside id="installPop" class="install-pop" role="dialog" aria-labelledby="installTitle" aria-describedby="installCopy">
+  <button class="install-close" id="installClose" type="button" aria-label="পরে মনে করিয়ে দিন">×</button>
+  <div class="install-title" id="installTitle">📲 MCQ প্রস্তুতি অ্যাপ ইনস্টল করুন</div>
+  <div class="install-copy" id="installCopy">দ্রুত খুলুন, হোম স্ক্রিন থেকে পড়ুন এবং অ্যাপের মতো ব্যবহার করুন।</div>
+  <div class="row"><button class="btn p" id="installAction" type="button">এখনই ইনস্টল</button><button class="btn" id="installLater" type="button">পরে</button></div>
+</aside>
+<div id="appDialog" class="app-dialog" role="presentation">
+  <section class="app-dialog-box" role="dialog" aria-modal="true" aria-labelledby="appDialogTitle" aria-describedby="appDialogMessage">
+    <h2 id="appDialogTitle">MCQ প্রস্তুতি</h2>
+    <p id="appDialogMessage" class="mu"></p>
+    <input id="appDialogInput" type="password" autocomplete="off" style="display:none">
+    <div class="row"><button class="btn" id="appDialogCancel" type="button">বাতিল</button><button class="btn p" id="appDialogOk" type="button">ঠিক আছে</button></div>
+  </section>
+</div>
 <nav id="nav"></nav>
 
 <script type="text/plain">
